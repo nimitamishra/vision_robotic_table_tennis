@@ -2,9 +2,12 @@
 #
 #   python g1/viz_viser.py      then open http://localhost:8080
 #
-# The robot is drawn in its nominal (zero-joint) pose, rigidly placed so its URDF d435_link matches
-# the camera pose measured from the reference tag. Waist/leg joint angles are not read yet.
+# The robot is drawn upright (gravity = world -z, i.e. the reference tag lies flat) in its zero-joint
+# pose. Only its yaw and position follow the camera. Our G1's head is physically tilted relative to the
+# stock URDF mount, so the head + D435 are pitched about a neck pivot by the tilt measured at calibration
+# (or --head-tilt). Waist/leg joint angles are not read yet.
 import argparse, json, time
+from functools import partial
 from collections import deque
 from pathlib import Path
 
@@ -13,6 +16,7 @@ import numpy as np
 import viser
 import yourdfpy
 from pupil_apriltags import Detector
+from scipy.spatial.transform import Rotation
 from viser.extras import ViserUrdf
 
 from g1_stream import (G1_HOST, G1CameraStream, T_D435LINK_OPTICAL, T_to_wxyz_pos, T_world_cam_from_tag,
@@ -20,11 +24,14 @@ from g1_stream import (G1_HOST, G1CameraStream, T_D435LINK_OPTICAL, T_to_wxyz_po
 
 HERE = Path(__file__).parent
 URDF_PATH = HERE / "g1_description" / "g1_29dof_rev_1_0.urdf"
+NECK_PIVOT_TORSO = np.array([0.0, 0.0, 0.30])  # bottom of the head mesh, in torso_link
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--host", default=G1_HOST)
 ap.add_argument("--calib", default=str(HERE / "calibration.json"))
 ap.add_argument("--port", type=int, default=8080)
+ap.add_argument("--head-tilt", type=float, default=None,
+                help="head pitch vs stock mount in deg (+ = down); default: measured from calibration")
 ap.add_argument("--smooth", type=float, default=0.3, help="EMA weight on new pose (1 = no smoothing)")
 args = ap.parse_args()
 
@@ -38,9 +45,36 @@ stream = G1CameraStream(args.host)
 W, H = stream.intr["width"], stream.intr["height"]
 fov_y = 2 * np.arctan2(H / 2, stream.intr["fy"])
 
-urdf = yourdfpy.URDF.load(str(URDF_PATH))
+
+
+def camera_yaw_pitch(T_world_opt):
+    """Heading (rad, about world z) and down-pitch (rad) of the optical axis."""
+    fz = T_world_opt[:3, 2]
+    return np.arctan2(fz[1], fz[0]), np.arcsin(np.clip(-fz[2], -1, 1))
+
+
+def load_g1_with_head_tilt(tilt_rad):
+    """G1 URDF with head_joint and d435_joint rotated about the neck pivot (pitch, + = down)."""
+    u = yourdfpy.URDF.load(str(URDF_PATH))
+    pivot = make_T(np.eye(3), NECK_PIVOT_TORSO)
+    tilt = pivot @ make_T(Rotation.from_euler("y", tilt_rad).as_matrix(), 0) @ np.linalg.inv(pivot)
+    for name in ("head_joint", "d435_joint"):
+        u.joint_map[name].origin = tilt @ u.joint_map[name].origin
+    handler = partial(yourdfpy.filename_handler_magic, dir=str(URDF_PATH.parent))
+    return yourdfpy.URDF(robot=u.robot, filename_handler=handler)
+
+
+STOCK_PITCH = camera_yaw_pitch(yourdfpy.URDF.load(str(URDF_PATH), load_meshes=False)
+                               .get_transform("d435_link", "pelvis") @ T_D435LINK_OPTICAL)[1]
+if args.head_tilt is not None:
+    head_tilt = np.radians(args.head_tilt)
+else:
+    measured_pitch = camera_yaw_pitch(np.array(calib["calibration_pose"]["T_world_camera_optical"]))[1]
+    head_tilt = measured_pitch - STOCK_PITCH
+print(f"head tilt vs stock mount: {np.degrees(head_tilt):+.1f} deg (camera {np.degrees(STOCK_PITCH + head_tilt):.1f} deg down)")
+
+urdf = load_g1_with_head_tilt(head_tilt)
 T_PELVIS_OPTICAL = urdf.get_transform("d435_link", "pelvis") @ T_D435LINK_OPTICAL
-T_OPTICAL_PELVIS = np.linalg.inv(T_PELVIS_OPTICAL)
 
 # ---- scene ----
 server = viser.ViserServer(port=args.port)
@@ -64,6 +98,7 @@ with server.gui.add_folder("G1 camera"):
     gui_status = server.gui.add_markdown("waiting for frames...")
     gui_pos = server.gui.add_text("cam xyz (m)", initial_value="-", disabled=True)
     gui_pelvis = server.gui.add_text("pelvis xyz (m)", initial_value="-", disabled=True)
+    server.gui.add_text("head tilt (deg, + down)", initial_value=f"{np.degrees(head_tilt):+.1f}", disabled=True)
     gui_img = server.gui.add_checkbox("show image on frustum", True)
     gui_robot = server.gui.add_checkbox("show robot", True)
     gui_trail = server.gui.add_checkbox("show trail", True)
@@ -89,14 +124,17 @@ while True:
         if T_smooth is None or args.smooth >= 1:
             T_smooth = T
         else:  # blend translation linearly, rotation via quaternion lerp
-            from scipy.spatial.transform import Rotation, Slerp
+            from scipy.spatial.transform import Slerp
             R = Slerp([0, 1], Rotation.from_matrix([T_smooth[:3, :3], T[:3, :3]]))(args.smooth).as_matrix()
             T_smooth = make_T(R, (1 - args.smooth) * T_smooth[:3, 3] + args.smooth * T[:3, 3])
         last_seen = time.time()
 
         wxyz, pos = T_to_wxyz_pos(T_smooth)
         cam_frame.wxyz, cam_frame.position = wxyz, pos
-        T_world_pelvis = T_smooth @ T_OPTICAL_PELVIS
+        # upright robot: only yaw from the camera, then place pelvis so its (tilted) camera lands on pos
+        yaw, _ = camera_yaw_pitch(T_smooth)
+        R_world_pelvis = Rotation.from_euler("z", yaw).as_matrix()
+        T_world_pelvis = make_T(R_world_pelvis, pos - R_world_pelvis @ T_PELVIS_OPTICAL[:3, 3])
         robot_root.wxyz, robot_root.position = T_to_wxyz_pos(T_world_pelvis)
         gui_pos.value = " ".join(f"{v:+.3f}" for v in pos)
         gui_pelvis.value = " ".join(f"{v:+.3f}" for v in T_world_pelvis[:3, 3])
