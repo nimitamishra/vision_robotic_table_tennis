@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+.venv/
+.ball-venv/
+models/*.pt
+*.log
+*.csv
