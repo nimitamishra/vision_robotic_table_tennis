@@ -1,0 +1,570 @@
+[
+  {
+    "path": ".gitignore",
+    "sha256": "3af75a4c396a90cf08b8e8e2e493a21e9d2f7db9541249c41fe1f92ced84c7b7"
+  },
+  {
+    "path": "README.md",
+    "sha256": "a739082e34d73e31da901b96abbb13dd7e4b56b1b0330b71cc66129f1e3ae19a"
+  },
+  {
+    "path": "README.txt",
+    "sha256": "2e01197d2c6b21541f6c71190fe5f3eb112d6f296812ac8473adf55c2ed3e103"
+  },
+  {
+    "path": "experiments/analyze_fragmentation.py",
+    "sha256": "366d55e36d80e2c0aac36d7aff2b23a4137483e6cb56a8116468b3b22d11e714"
+  },
+  {
+    "path": "experiments/analyze_jumps.py",
+    "sha256": "5d2ff0d7cbb3e28d3c148db0db894b098458c2007b2d494846a8340a93ce7e34"
+  },
+  {
+    "path": "experiments/build_ablation_data.py",
+    "sha256": "94aa69b269cb8d58695ad46c334282b335b76bc2ca1951247025cd96b584bea1"
+  },
+  {
+    "path": "experiments/build_flow_checks.py",
+    "sha256": "7570c04defb5c7a58885bc26be8be568e5fc37c060c5e8ec11a505ab9a8ab9f9"
+  },
+  {
+    "path": "experiments/build_flow_gap_checks.py",
+    "sha256": "7eb83ccfb4436c73cc6439e934713f254f8eff43a0b3bdf194766ba8a837791f"
+  },
+  {
+    "path": "experiments/capture_plane_baseline.py",
+    "sha256": "ea388d2fa96a7be629e117f3d8b28388bdf8bf241d71e1d90e72f4ff4a0a0abe"
+  },
+  {
+    "path": "experiments/check_ball_after_move.py",
+    "sha256": "ea3efb121c605aae17f269e5600d25942eecf5c100e277170c799f0684e5a4fd"
+  },
+  {
+    "path": "experiments/check_ball_plane.py",
+    "sha256": "820167cf351a0b7c032245a2f9f419ee7d782ce10bf9a7f3cace906f6c5679f8"
+  },
+  {
+    "path": "experiments/check_fixed_pose.py",
+    "sha256": "c5dfba9938a8cff3a27ca9ff0035a66bcdbcbe12f1d37147e61fe325dbda0221"
+  },
+  {
+    "path": "experiments/check_forecast_display.py",
+    "sha256": "bc7f02fc228d94c370483a4462c5db91ae590583ba968bbb97801809a1967d52"
+  },
+  {
+    "path": "experiments/check_heldout_plane.py",
+    "sha256": "eda8d46b17c92573c89b05af47519de91837cf5ca1d393dbd6f61cf87ed48fff"
+  },
+  {
+    "path": "experiments/check_raised_tag.py",
+    "sha256": "6b51cf6dfa283c6d4ae9ac7e132bb6350b0e3c0b35556affb71fa5d477f0c1d8"
+  },
+  {
+    "path": "experiments/check_tag3_live.py",
+    "sha256": "a301b0dd60f50c172058b7e5ff3455c93f91d43a8f0938b97a9658e227dbe6fb"
+  },
+  {
+    "path": "experiments/check_tag3_visibility.py",
+    "sha256": "08b51fb28558427254e603f9f5e2d1795a133806dcc2cebd92bba70b4e0a9b2d"
+  },
+  {
+    "path": "experiments/check_tag4_live.py",
+    "sha256": "47b003935c4ba0d851107fd125c4e825075abf3ef756c122c505a18e7ffee289"
+  },
+  {
+    "path": "experiments/check_tag_corners.py",
+    "sha256": "b6121516c33f0cdc8fbca427f1b011355b9a4f22817a09f838720adc883aba66"
+  },
+  {
+    "path": "experiments/check_tag_size.py",
+    "sha256": "4a5331a38513297b8e11576ed2f90e36dc3cd3c7d0495a3d976376edf0ca6985"
+  },
+  {
+    "path": "experiments/collision-before-contact-fix.py",
+    "sha256": "0fa0c4d169b4623eeb591c146b36cbe44cedd6626ed54879fba00051cabf5d54"
+  },
+  {
+    "path": "experiments/diagnose_ball_centers.py",
+    "sha256": "57c9a06ed1581cce6d0d60c1343ee32eb69db8d86b2753c371f4d67302bad007"
+  },
+  {
+    "path": "experiments/diagnose_ball_sideways.py",
+    "sha256": "d2fc8f0671fd8d14dbd171c79ebf0bf0bff367a0ef2f774a66990130093132e5"
+  },
+  {
+    "path": "experiments/diagnose_plane.py",
+    "sha256": "d1877a7a40df6b2a1c9cdf40da555bdeac88bf6f942617c92e9e827429ae734d"
+  },
+  {
+    "path": "experiments/eval_bounce_restart.py",
+    "sha256": "95b36d55e46b52948e028c8f71ecc441b4aa6ff264181de2dc8f9b2f4356e853"
+  },
+  {
+    "path": "experiments/eval_combined.py",
+    "sha256": "553df73ab52e7abe8f54dd69bf78ed13f4698e21ca9e8b62239167486028c1d5"
+  },
+  {
+    "path": "experiments/evaluate_centers.py",
+    "sha256": "3bfadeaad8381596835da279a2c8e3002541e6eba4348b6fe66ec5aec2f917c6"
+  },
+  {
+    "path": "experiments/evaluate_centers_01.py",
+    "sha256": "4818eaff917d4d163d10fb3270e111bcfc130a1494c3dd06941f52bcf7a35887"
+  },
+  {
+    "path": "experiments/evaluate_final_filters.py",
+    "sha256": "1323a1fba25d9a86c29a91c695a2ff3141ceda1ac951d1b8b27f784befbff5fa"
+  },
+  {
+    "path": "experiments/finalize_tracking_review.py",
+    "sha256": "b721b9a00e4997e4b19a833e804d5aaaf945dbd3baeb5db05f2d9c41ce5ec2d6"
+  },
+  {
+    "path": "experiments/fit_bounce.py",
+    "sha256": "a2255b8055d5048e9ab2b12d297699ff578093ba62d688706548187dbdae6747"
+  },
+  {
+    "path": "experiments/fit_stereo_square.py",
+    "sha256": "a726fadd68a810e8f83eaa1acaceba49a098d5df70b0c858153b692f3d84e6c8"
+  },
+  {
+    "path": "experiments/fix_measure.py",
+    "sha256": "71a7d80592ecdeb3379058e9373604fb887f75c1ab5f9e8c48fef890ba497949"
+  },
+  {
+    "path": "experiments/inspect_tags.py",
+    "sha256": "c35d8d98108170414017bd3a9f522fef69cfecfe9ac68d8ba3d7c8fda5ff92e9"
+  },
+  {
+    "path": "experiments/inspect_tracking_limits.py",
+    "sha256": "8da6613d21df812c0a648d7cd9db7ca23287de609c2b61d1b44f8c8996fda283"
+  },
+  {
+    "path": "experiments/integrate_centers.py",
+    "sha256": "23e32c78be4346b928f6858e9802f0923f36efc22b97916ca2a93efcdbb49cdc"
+  },
+  {
+    "path": "experiments/latency_probe.py",
+    "sha256": "ab3738906efed5ea2dd722630f87804d88b9e446825378dc0bbd1da03330aa46"
+  },
+  {
+    "path": "experiments/latency_probe_after.py",
+    "sha256": "106c6619db842a217771c60f21039ae01ac04978f933eb19d0263cb49d12e19a"
+  },
+  {
+    "path": "experiments/multiball_ablation.py",
+    "sha256": "c0a9591b81f7c611cff5384282a16ea0a2d855a95a2f9c54978f68010cd1d932"
+  },
+  {
+    "path": "experiments/offline_robot_move_audit.py",
+    "sha256": "4885a80d69d3dbfaf29937a08132bd7abd2d5b43eefdf780391903807331d749"
+  },
+  {
+    "path": "experiments/offline_two_threshold_experiment.py",
+    "sha256": "143509dc3faca1ad3bdbfd7ea37b080586d07c420ab2ff05f21f027e53bcbc13"
+  },
+  {
+    "path": "experiments/patch_g1.py",
+    "sha256": "acd3fb5030eca90495b71b0a628ea6c99a8baa95be45bbc3e2c98e9a08f7ed10"
+  },
+  {
+    "path": "experiments/reach-before-ground-start.py",
+    "sha256": "b0d4cf9e47c2c6ddb0f5ad27dddea77cd535f074a6dfa1c16a6464bbffe5399c"
+  },
+  {
+    "path": "experiments/replay_fallback.py",
+    "sha256": "9b50ea94910ee400ac114be16e02295fc1e72bf060e80d8e62333a105913ba71"
+  },
+  {
+    "path": "experiments/replay_image_centers.py",
+    "sha256": "06a0876ed0c388e8f8362b80d9239df78c75338006e2b0c483333bace0529292"
+  },
+  {
+    "path": "experiments/replay_multiball.py",
+    "sha256": "f40f939fe88f579f13941dba2e80e68a7253064a716ff6e5dc3fdf5e2ea22acb"
+  },
+  {
+    "path": "experiments/replay_multiball_optimized.py",
+    "sha256": "88cd87607d5e066d633982528b71d193cf6fc215d6d51829b932c548284a5383"
+  },
+  {
+    "path": "experiments/replay_stereo_tracking.py",
+    "sha256": "d8e0f37ac879ea832d3af723471d491f9d996c44a83db0e4bd333da56b467931"
+  },
+  {
+    "path": "experiments/restart_center_comparison.py",
+    "sha256": "5213923f5ce4d6db77131c4f190d52c11aec55c65161abe46a4f1f969b86168a"
+  },
+  {
+    "path": "experiments/run_ablations.py",
+    "sha256": "37d5d27acb5c5c8c61b2259532dd30e80470c5fd2cb4f56365744dbd9c96625c"
+  },
+  {
+    "path": "experiments/start_measurement.py",
+    "sha256": "867c52d58a5b5d5a8a007e81f0a9172d4201fd3fe4ec29a37059375a9cb6181e"
+  },
+  {
+    "path": "experiments/stereo_viser-before-fallback.py",
+    "sha256": "ec462a84ec26463511af1bd47ced8d1e423ed4b14eabfec29da902f82f2107e4"
+  },
+  {
+    "path": "experiments/summarize_40.py",
+    "sha256": "73a71154b9cea9ead4846371978c2d5714b9c268c557b8527c78241ea6202190"
+  },
+  {
+    "path": "experiments/summarize_raised.py",
+    "sha256": "303d906c0fbf363351dae4034321ac04e7d93b490984022638957bdea50edf91"
+  },
+  {
+    "path": "experiments/summarize_raised02.py",
+    "sha256": "3f23f6d421a283e5bb7877a73dbbdedbab7119739dd0931c777b9e1a7070fa22"
+  },
+  {
+    "path": "experiments/summarize_static.py",
+    "sha256": "bd139b34bd7354ad9873d968fb784fa82259dceb78039b569d892a6aacf0c4d9"
+  },
+  {
+    "path": "experiments/summarize_static_02.py",
+    "sha256": "d9586a438177674e9c6bab3911948366663d5e3dac98d9fd43eaf11531ea49a3"
+  },
+  {
+    "path": "experiments/summarize_static_02_repeat.py",
+    "sha256": "ea4819a3237b1cf2c223dcf5265e1f71741aa32380e8b7a2347785c58ff5cf50"
+  },
+  {
+    "path": "experiments/summarize_sweep20.py",
+    "sha256": "49be54c7f1765460b1a9a704426cbb0845fb2260165c2b78be4d9abb5c6fb2c7"
+  },
+  {
+    "path": "experiments/summarize_sweep20_return.py",
+    "sha256": "537584a15bf81cf3ceb6992aa2b3c9c8abe40950423189b1e18714d0ab3e56b9"
+  },
+  {
+    "path": "experiments/summarize_sweep40.py",
+    "sha256": "7c5f5dccf3ba764ac48ad8a6c8f380c12d0e6afa16f7d0a17da9e7a90d70bdee"
+  },
+  {
+    "path": "experiments/summarize_sweep60.py",
+    "sha256": "824632ab8292e13cabbad72d22dd02b07be85246bd8ba0746a7212e7014910c6"
+  },
+  {
+    "path": "experiments/summarize_sweep80.py",
+    "sha256": "904cfd8437a95d417426021cdfe6d4c58790ab4522b5d6da86d8e7e90ebd5617"
+  },
+  {
+    "path": "experiments/test_ball_geometry.py",
+    "sha256": "61322e05e152654be9f4cc81413b3f344e64e1d1802356edc18a5da55334fa33"
+  },
+  {
+    "path": "experiments/test_centers.py",
+    "sha256": "3ecb2508c5fc277dac3d70e374d87ec924b6a1d544d81cea92a21712601b71d4"
+  },
+  {
+    "path": "experiments/test_studio_record.py",
+    "sha256": "2f538eeb00a5f2ce7b352e6bb19b440dbebd9b423a82aea660d087ac65dcfac2"
+  },
+  {
+    "path": "experiments/test_trajectory_live.py",
+    "sha256": "356d26c8ac1d45d181d06375f8ab93c7fdfa015a1237f91c059c348462c35472"
+  },
+  {
+    "path": "experiments/tracker-before-forecast-display.py",
+    "sha256": "d6fbbe26418f00e3a32acd01fb36c21944977864d133fae867709c828506f811"
+  },
+  {
+    "path": "experiments/tracker-before-intercept.py",
+    "sha256": "460d3ea7f0a5ab2037a9d23fa6c1f0ea41335aae5aeb4a3703eb2261a619b420"
+  },
+  {
+    "path": "experiments/tune_multiball.py",
+    "sha256": "804b1cf6d00dacd02873dfb86e1ad2f81168740267876bde8eadce3c33b3f97d"
+  },
+  {
+    "path": "experiments/tune_multiball_appearance.py",
+    "sha256": "fee1a16c71064018cd07bdb9e2a9148368716e386051618c9b979e87f60ed4ff"
+  },
+  {
+    "path": "experiments/tune_multiball_extreme.py",
+    "sha256": "d905ca9027cdf56cb683ad4a51860df75eb7d922f49bad4470a3500725292847"
+  },
+  {
+    "path": "experiments/tune_multiball_wide.py",
+    "sha256": "aca4e9664294f773bdbfa27801d74a2114b3a9eb9ae70b52554f15ccfc853b36"
+  },
+  {
+    "path": "experiments/update_geometry.py",
+    "sha256": "72ee6eb63a669f9dd68c1e0ce0f6ab890bccdc07928fbf2eaeadd9841dbd5fc1"
+  },
+  {
+    "path": "outputs/G1-Studio/G1-Studio.desktop",
+    "sha256": "0de9dd250008380f4b0fe0062cb31aa808f99cc93880e46a554f35adfc350817"
+  },
+  {
+    "path": "outputs/G1-Studio/README.txt",
+    "sha256": "5ffdae7fa2c698b76150db18843d4586064a1b777d43451663da6af46640c6b0"
+  },
+  {
+    "path": "outputs/G1-Studio/app.py",
+    "sha256": "ecb3df6250f3a6e146b0ed07d7501ec11adc7a930ce12afbf29ab11898aa83fd"
+  },
+  {
+    "path": "outputs/G1-Studio/camera_relay.py",
+    "sha256": "ac03631c76924c074e6b9def0b7f6ef466015a052554f456dc08f1962d0094e0"
+  },
+  {
+    "path": "outputs/G1-Studio/record.py",
+    "sha256": "7311d1c4bdfa89bfa7c857c1a64b41aa6383ea90e9bfe84b7387ccad6c1be705"
+  },
+  {
+    "path": "outputs/G1-Studio/run.sh",
+    "sha256": "815915acd80947bbccaf456881048a1f273012d850142257d6384a08fd1addb8"
+  },
+  {
+    "path": "outputs/G1-Studio/sonic.sh",
+    "sha256": "17f341b186247f1767366479336852ca6e11d17210dc55e561795edf76f7b707"
+  },
+  {
+    "path": "outputs/G1-Studio/test_app.py",
+    "sha256": "48f9a743c6547852ac8654ead537ae7783cd9c993f20a223656b44b673157671"
+  },
+  {
+    "path": "outputs/ball-recorder/multiball-review/best-parameters-appearance.json",
+    "sha256": "adb2b357f19ffc0f46c601e3d5dff12217b99700b11d633039f3d4dfa7ffad06"
+  },
+  {
+    "path": "outputs/ball-recorder/multiball-review/best-parameters-extreme.json",
+    "sha256": "876dfd8cea55b30ebf4851aa9809d69e87d9aa7244bbe4b2892286ef4575b219"
+  },
+  {
+    "path": "outputs/ball-recorder/multiball-review/best-parameters-wide.json",
+    "sha256": "12edcae5b3eec29fc132bb7c6f3b5789e7587f12d3dd1cc3a428bf9be99a2f7d"
+  },
+  {
+    "path": "outputs/ball-recorder/multiball-review/best-parameters.json",
+    "sha256": "58f615564bca5aa963267a5ba63501c02e45a77220d17b95ebffa90a1f459e06"
+  },
+  {
+    "path": "outputs/ball-recorder/multiball-review/tracker.py",
+    "sha256": "bc3336f083caa06d6a2c83abe87860a87ceb6983c59c365dd36e45ba52041505"
+  },
+  {
+    "path": "outputs/ball-recorder/multiball-review/tracker_initial.py",
+    "sha256": "a1863219c75ff04ecf49b8c766d17ff4d3c6a27c344619de16589a4f76b3a3ba"
+  },
+  {
+    "path": "outputs/ball-recorder/record.py",
+    "sha256": "163123d9f0ab9ee247551ac26624345dba59cda2ed8c9c587a5470d90d93d43d"
+  },
+  {
+    "path": "outputs/ball-recorder/start.sh",
+    "sha256": "bf5999ee1c177db358dc6d66c9755a3d355fd9bf81bc62f9f6927c7c98fe0a13"
+  },
+  {
+    "path": "outputs/ball-trajectory/README.txt",
+    "sha256": "147569f54dc005cbc0cc32886f3f45113c4f5752cdfb632feda92f619ec24500"
+  },
+  {
+    "path": "outputs/ball-trajectory/analyze_intercept.py",
+    "sha256": "9a8c569b051c3351ef1c05c590ab900484da7ac9c88bb009a41965070d9c2aca"
+  },
+  {
+    "path": "outputs/ball-trajectory/check_contact_fix.py",
+    "sha256": "0532c8928142e42ef6134e040f25abcf1929860e6f2564006baafb787cac5e8c"
+  },
+  {
+    "path": "outputs/ball-trajectory/collision.py",
+    "sha256": "82a48feacc619f312c8103e1c1e02fabf38e381e78f7eb75b687881d0a94bfdb"
+  },
+  {
+    "path": "outputs/ball-trajectory/fit_intercept_bounce.py",
+    "sha256": "6b835e0579e5b6f4264dfe17d958d97a42c0198dafaace5744e60929cdf52196"
+  },
+  {
+    "path": "outputs/ball-trajectory/intercept.py",
+    "sha256": "459a5d2cf593956ee5ab28936c55e256c90dbf36df79e36fe1917a5c3d02cf6c"
+  },
+  {
+    "path": "outputs/ball-trajectory/intercept_session.py",
+    "sha256": "359d493e5ecd3f7b3a263ae5a9838d6513bed9051f46e088d437b333d4863551"
+  },
+  {
+    "path": "outputs/ball-trajectory/run.py",
+    "sha256": "4c4d848e5d2147636adcf9018960f544f4e98b242bcfda3eecf2a44a2777987c"
+  },
+  {
+    "path": "outputs/ball-trajectory/start.sh",
+    "sha256": "e44d24d473cf7acc47910ce7b816e178cb8c5b5b953728a70fba755a9c1953a4"
+  },
+  {
+    "path": "outputs/ball-trajectory/test_collision.py",
+    "sha256": "f826fa07282536bbd6248faa720cee7f7c3b93c598683ea6c72497fc1a5bd49f"
+  },
+  {
+    "path": "outputs/ball-trajectory/test_intercept.py",
+    "sha256": "1890e2936778705c8fc9d664048d2e7f39d26000ea971e5c2d88b43bded0428b"
+  },
+  {
+    "path": "outputs/ball-trajectory/test_tracker.py",
+    "sha256": "0d29f4a8b1950bb6046d21fee228c5640be4473a9692c614b255f38a763cbea5"
+  },
+  {
+    "path": "outputs/ball-trajectory/tracker.py",
+    "sha256": "3e2fdd3c60e20b22d29890539698a1e6ede48e1dce06b0f1f7ac31d47063a3d3"
+  },
+  {
+    "path": "outputs/g1-ball-session/README.txt",
+    "sha256": "c229b9351b77be75a3e61fdfb0b597b609a80b229313687c7eabc2ebc72b8bde"
+  },
+  {
+    "path": "outputs/g1-ball-session/ball_center.py",
+    "sha256": "39bdc77d2e917315eb51d6d72b404c9bae0b55368d9ea151fe82eb79f117987c"
+  },
+  {
+    "path": "outputs/g1-ball-session/center-validation.txt",
+    "sha256": "3617e2698c1a8941b55ffb358f30484110f729fedc847abe501c13ec7db7c117"
+  },
+  {
+    "path": "outputs/g1-ball-session/height-diagnosis.txt",
+    "sha256": "33b52f052d7b47ab75301859a8bb03e325cb28ab8e9c171be3b8788777ad513e"
+  },
+  {
+    "path": "outputs/g1-ball-session/measure_ball.py",
+    "sha256": "2c4d74137264d0aa229eceaa0ffb0cce93fb022d7cc5601b54fb293a15f5ddc2"
+  },
+  {
+    "path": "outputs/sonic-reach-test/README.txt",
+    "sha256": "09226648b5888288bea1855a4492914014d95d6f32b8613c74e628f1e6836006"
+  },
+  {
+    "path": "outputs/sonic-reach-test/batch_test.py",
+    "sha256": "02755d345c4cb766b84ab386a531521b9b448d1c0f7c7f99d8764d1aab5c5f66"
+  },
+  {
+    "path": "outputs/sonic-reach-test/checks.py",
+    "sha256": "3554a97b8284cbc095b315391b03e375b905b9b7350937f34eda4d1636e9af10"
+  },
+  {
+    "path": "outputs/sonic-reach-test/controller.sh",
+    "sha256": "fcc470aceae0adfe5d6b678b38791b5d5720a65688e4e8a186ea4e9d81ef618a"
+  },
+  {
+    "path": "outputs/sonic-reach-test/feedback.py",
+    "sha256": "44693454487b025be1e523c31e1463598c7357604b107e8d65eece6a047aff63"
+  },
+  {
+    "path": "outputs/sonic-reach-test/sim_test.py",
+    "sha256": "1b8a360222cc51b7ddf99369127d6b66d0a4ffd1747584371583f1313806accd"
+  },
+  {
+    "path": "outputs/sonic-reach-test/start.sh",
+    "sha256": "2bb25cca11ba1c251e600285e5e4526caf1b1766ecfc2b3f203776fd19142916"
+  },
+  {
+    "path": "outputs/sonic-reach-test/summarize.py",
+    "sha256": "f4dcea784311178ce3643c914012179d6ddccc85d7b1c67d4cbfdc886a630cb4"
+  },
+  {
+    "path": "outputs/sonic-reach-test/test_checks.py",
+    "sha256": "e59e1c1dffa072d2905cfcf1f9afb532a2d03172e8e017881bb214e03c37f54f"
+  },
+  {
+    "path": "outputs/sonic-reach-test/test_feedback.py",
+    "sha256": "04b19ef10e486ae4b759875030dce403c661dafe46a3ad4a696fd8984b5391c6"
+  },
+  {
+    "path": "outputs/sonic-reach-test/test_summary.py",
+    "sha256": "257378b08885c95d5ffd96e6e4461e6bb201cd1d02fb8f5040641724571022f4"
+  },
+  {
+    "path": "outputs/sonic-reach-test/validation/results.html",
+    "sha256": "9197de234c029a9afda60b577249b58f0c6aa968dbe314802d252f2230da13ee"
+  },
+  {
+    "path": "outputs/sonic-reach-test/validation/results.json",
+    "sha256": "6938196502f36c505ed70e59fa7b5972b339f26d3050d7bd137ba1ec556400b7"
+  },
+  {
+    "path": "outputs/sonic-reach-test/viewer.py",
+    "sha256": "f2389441b7132b08abb53c84235e9ba24442ce8c1e52477bae22d34e69231ed9"
+  },
+  {
+    "path": "sonic/launch_sonic_control.sh",
+    "sha256": "9e4ca90b5ef0e79317fc996aa6f4ce565298cfff06530bb8c739ed09e7b2091e"
+  },
+  {
+    "path": "sonic/launch_sonic_real.sh",
+    "sha256": "1fb1886d16d613a4ddcea1ef070e290a0511e9ecd8e6ce8bf6b564f54023f729"
+  },
+  {
+    "path": "sonic/start_sonic_sim.sh",
+    "sha256": "a622090298954c3409aae91231d5dbecfa8322ce95df0493f98c97b10f13f614"
+  },
+  {
+    "path": "vision/g1/ball_geometry.py",
+    "sha256": "3cb698df2e21fb5eaff17cd493e0984404eb3cfedcfb755cb6a14f4f47124b4e"
+  },
+  {
+    "path": "vision/g1/ball_worker.py",
+    "sha256": "cd2f774f34f3c1565705dca8d09408f1c0c1043a128d8a708a06faa0ed3e687b"
+  },
+  {
+    "path": "vision/g1/calibrate_world.py",
+    "sha256": "31f9e74f93a517b5c704a1b33469b345030bac497d108abe2fd92fd3dc41769c"
+  },
+  {
+    "path": "vision/g1/calibration.json",
+    "sha256": "6ca68904fd220c7ad54c057f5788f34700848600e76ab01619b6386f74976930"
+  },
+  {
+    "path": "vision/g1/g1_stream.py",
+    "sha256": "5680951b033b611bd53c9583d3b8b928a3d6b680954adb8ccea032bba9c8ea15"
+  },
+  {
+    "path": "vision/g1/g1_tag_detection.py",
+    "sha256": "882e12b974d6af000157b5fa0c49f0102f20556b27c57c24aa50ea48f2bc7aa1"
+  },
+  {
+    "path": "vision/g1/joint_state_server.py",
+    "sha256": "7c8ae35db4968a0de1cefb6ba43116022f4812f674924f4fc8a7bb3cf163116e"
+  },
+  {
+    "path": "vision/g1/joint_stream.py",
+    "sha256": "8e8d76f736af29cc21d3429fb2ad4263a8c3f287da32d811cb77fc30cc14147f"
+  },
+  {
+    "path": "vision/g1/live_waist_check.py",
+    "sha256": "6fa55d97faed82668c019c7fab90bf50a0ccffcc0bdb0dd811046473ae26b8ec"
+  },
+  {
+    "path": "vision/g1/offline_waist_test.py",
+    "sha256": "bbcb58fe896c0ef7d52050e7922a357a5a52e89e9ee41eb1a09b182e2d20ee88"
+  },
+  {
+    "path": "vision/g1/recalibrate_fallback_tags.py",
+    "sha256": "60128f89679c3b6ad2109c33a4e70e5d395529d3d04d3f3dd946ee3a63aefcbf"
+  },
+  {
+    "path": "vision/g1/rs_stream_server.py",
+    "sha256": "ae8b688640f8e1d231054d276b9957cd91534d557e1cbbe07113562ed53237b3"
+  },
+  {
+    "path": "vision/g1/stereo_pose_server.py",
+    "sha256": "5d69548c20700d206eb8dc1ae99f089c51bdd1d848fd472bcf01930d533b2c66"
+  },
+  {
+    "path": "vision/g1/stereo_stream.py",
+    "sha256": "68640f741642538f0615f21c6c7fda3f299fe48139d3b943c35914c26f4c49f5"
+  },
+  {
+    "path": "vision/g1/stereo_viser.py",
+    "sha256": "a5ad214fa5fcaef0f26eda35d410cdb0ee395cce226f7efd5391a80bf57986d2"
+  },
+  {
+    "path": "vision/g1/table_scene.py",
+    "sha256": "f1e6dc39b957b66c649c56c056e070857b220b27cdee3ae0fa376089eaca44cf"
+  },
+  {
+    "path": "vision/g1/viz_viser.py",
+    "sha256": "0222215771e78241a40a3f6b42291a3e0092c1b18fd27e1e8d7146cd5ff67d74"
+  }
+]

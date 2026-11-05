@@ -1,0 +1,25 @@
+Local contour ellipse refinement — validation
+
+Method: YOLO region -> padded original grayscale ROI -> local contrast check ->
+three interpolated intensity contours -> ellipse fit -> shape and center agreement
+checks -> stereo reprojection and table-volume checks. No temporal smoothing.
+Subpixel interpolation does not create new sensor detail.
+
+Replay comparison on identical samples, same raw camera-to-table poses:
+Point 1, approximate tape Y 38.5 cm, 616 accepted / 0 rejected:
+  Box Y median 40.249 cm; Y std 1.785 mm.
+  Contour Y median 41.070 cm; Y std 1.074 mm.
+Point 2, approximate tape Y 53 cm, 576 accepted / 0 rejected:
+  Box Y median 53.964 cm; Y std 14.030 mm.
+  Contour Y median 55.109 cm; Y std 0.834 mm.
+Replay counts may include trailing buffered packets beyond the earlier CSV snapshot.
+
+Conclusion: large stability improvement at point 2, but larger Y bias at both
+measured points. This is not a demonstrated absolute-accuracy improvement.
+Retain Box center as the default. Contour center (experimental) can be selected
+in Viser; both world positions are displayed and logged. Missing or rejected
+contours produce no refined measurement rather than falling back silently.
+
+Synthetic tests passed for a subpixel circle, flat image, undersized ROI and
+clipped ROI. Live packet processing and both Viser selector states verified.
+Dynamic ball, blur, occlusion and broader distance range remain unvalidated.

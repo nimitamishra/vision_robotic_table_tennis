@@ -1,0 +1,28 @@
+{
+  "name": "candidate",
+  "params": {
+    "initial_gate": 35,
+    "residual_gate": 50,
+    "max_gap": 0.25,
+    "velocity_weight": 0.6,
+    "age_penalty": 0,
+    "appearance_weight": 0
+  },
+  "created_ids": 73,
+  "confirmed_observations": 2577,
+  "median_observations_per_id": 19.0,
+  "train": {
+    "checks": 1212,
+    "same_id": 1211,
+    "broken": 1,
+    "conflicting_link": 0,
+    "not_paired": 7
+  },
+  "heldout": {
+    "checks": 795,
+    "same_id": 795,
+    "broken": 0,
+    "conflicting_link": 0,
+    "not_paired": 4
+  }
+}

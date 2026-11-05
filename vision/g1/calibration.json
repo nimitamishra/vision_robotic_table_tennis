@@ -1,0 +1,196 @@
+{
+  "world": {
+    "definition": "origin at tag 5 center on near edge of table; +x toward table right, +y toward net, +z upward",
+    "tag_family": "tag36h11",
+    "tag_id": 5,
+    "tag_size_m": 0.0875,
+    "T_world_tag": [
+      [
+        -1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "fallback_tags": {
+      "0": [
+        [
+          -0.9999633388733323,
+          0.0035609280112538348,
+          -0.007787213943107028,
+          -0.3694722368569334
+        ],
+        [
+          0.0035290773361419006,
+          0.9999853675033309,
+          0.004100047851410545,
+          0.0012779341154870829
+        ],
+        [
+          0.007801699971966513,
+          0.004072415858798615,
+          -0.9999612737034472,
+          0.0010707833090472948
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "1": [
+        [
+          -0.9994116374904279,
+          0.033283340262365464,
+          0.008282397580451939,
+          0.3755042209205852
+        ],
+        [
+          0.033374357353363145,
+          0.9993812245024872,
+          0.01110497110120833,
+          0.308297533375309
+        ],
+        [
+          -0.007907662104003245,
+          0.011374857049135134,
+          -0.9999040361490498,
+          -0.007017195282217669
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "2": [
+        [
+          -0.9997854302797577,
+          0.02061511901067164,
+          0.0020273797119069953,
+          0.36576541026400783
+        ],
+        [
+          0.020623827653370536,
+          0.9997777436752826,
+          0.004372754793711939,
+          -0.001647076506136976
+        ],
+        [
+          -0.0019367842534665626,
+          0.0044136288627054715,
+          -0.9999883843060471,
+          -0.002912711197284262
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "fallback_note": "Tags 0/1/2 were moved after 2026-10-02. Old poses retained for audit only and disabled on 2026-10-09 after a 7 cm jump at a 0->1 switch. Recalibrate against tag 5 before reuse.",
+    "play_volume_min_m": [
+      -1.0,
+      -1.0,
+      -0.15
+    ],
+    "play_volume_max_m": [
+      1.0,
+      3.4,
+      1.5
+    ],
+    "table": {
+      "width_m": 1.525,
+      "length_m": 2.74,
+      "height_m": 0.76,
+      "thickness_m": 0.025,
+      "tag_center_inset_m": 0.0265,
+      "net_height_m": 0.1525,
+      "inset_note": "User measured tag 5 center 2.6-2.7 cm from the near edge; midpoint 2.65 cm used."
+    },
+    "fallback_tags_valid": false,
+    "tag_size_note": "2026-10-16: user measured tag 5 outer black square side 8.75 cm, excluding white margin. Replaces 0.08542526488926783 m. Height-vs-distance error remains unresolved."
+  },
+  "camera": {
+    "name": "G1 head D435i",
+    "intrinsics": {
+      "width": 640,
+      "height": 480,
+      "fx": 607.0670166015625,
+      "fy": 607.574462890625,
+      "cx": 323.67657470703125,
+      "cy": 240.96173095703125,
+      "dist": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "depth_scale": 0.0010000000474974513
+    }
+  },
+  "calibration_pose": {
+    "T_world_camera_optical": [
+      [
+        -0.9957518825205113,
+        0.04426532083250295,
+        -0.08073889910354001,
+        0.07713988198574102
+      ],
+      [
+        0.0920122294183933,
+        0.4454587334143504,
+        -0.8905617701554104,
+        0.9447883611409718
+      ],
+      [
+        -0.0034551547451590336,
+        -0.8942075252403531,
+        -0.4476393232382615,
+        0.5527924753504224
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "jitter_mm": [
+      1.1658665199945741,
+      0.3818349437049442,
+      0.6085092288791941
+    ]
+  },
+  "timestamp": "2026-09-28T20:17:09",
+  "robot": {
+    "waist_forward_correction_m": 0.067,
+    "reference": "waist/pelvis rotation-axis side plane to near table edge, perpendicular to edge",
+    "measured_gap_m": 0.41,
+    "uncorrected_vision_gap_m": 0.4774,
+    "note": "User tape reading approximately 41 cm on 2026-10-02; correction applies to this physical G1 camera mount and head pose. Recheck after moving the camera or changing head pitch."
+  }
+}

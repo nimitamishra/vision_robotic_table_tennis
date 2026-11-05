@@ -1,0 +1,306 @@
+[
+  {
+    "simulation_only": true,
+    "requested_displacement_m": [
+      0.0,
+      0.05,
+      0.0
+    ],
+    "ramp_duration_s": 2,
+    "reference": "SONIC offset hand point relative to pelvis; not racket center",
+    "completed": true,
+    "virtual_support": false,
+    "final_hold_mean_errors_cm": {
+      "left": 1.6084788836434458,
+      "right": 1.1087878173744112,
+      "head": 0.18442329451296896
+    },
+    "hold_ready_observed": true,
+    "position_feedback": true,
+    "hold_min_root_height_m": 0.7846331422794282,
+    "exit_phase": "complete",
+    "starting_error_cm": 0.5798765019570451,
+    "mean_final_error_cm": 5.722273054386513,
+    "max_final_error_cm": 5.737059690229758,
+    "measured_displacement_m": [
+      0.033518903694163715,
+      0.012360328567207812,
+      0.01888610511666511
+    ],
+    "min_root_height_m": 0.784594116769993,
+    "max_root_height_m": 0.7852349393314966,
+    "both_feet_contact_fraction": 1.0,
+    "right_correction_at_limit_fraction": 0.6131386861313869,
+    "final_window_samples": 20,
+    "final_window_span_s": 0.9690203970003495,
+    "within_2cm_for_final_second": false,
+    "trial": "left_1",
+    "returncode": 0
+  },
+  {
+    "simulation_only": true,
+    "requested_displacement_m": [
+      0.0,
+      -0.05,
+      0.0
+    ],
+    "ramp_duration_s": 2,
+    "reference": "SONIC offset hand point relative to pelvis; not racket center",
+    "completed": true,
+    "virtual_support": false,
+    "final_hold_mean_errors_cm": {
+      "left": 1.490479740428118,
+      "right": 1.0861760100635633,
+      "head": 0.41353075215427515
+    },
+    "hold_ready_observed": true,
+    "position_feedback": true,
+    "hold_min_root_height_m": 0.7859877100687493,
+    "exit_phase": "complete",
+    "starting_error_cm": 0.8195851591580794,
+    "mean_final_error_cm": 0.611397512215069,
+    "max_final_error_cm": 0.7340627959046375,
+    "measured_displacement_m": [
+      -0.007350900494588808,
+      -0.04956527323801377,
+      -0.0025366641659892164
+    ],
+    "min_root_height_m": 0.786061929627497,
+    "max_root_height_m": 0.7869852445749317,
+    "both_feet_contact_fraction": 1.0,
+    "right_correction_at_limit_fraction": 0.0,
+    "final_window_samples": 20,
+    "final_window_span_s": 0.9687793610000881,
+    "within_2cm_for_final_second": true,
+    "trial": "right_1",
+    "returncode": 0
+  },
+  {
+    "simulation_only": true,
+    "requested_displacement_m": [
+      0.0,
+      0.0,
+      0.05
+    ],
+    "ramp_duration_s": 2,
+    "reference": "SONIC offset hand point relative to pelvis; not racket center",
+    "completed": true,
+    "virtual_support": false,
+    "final_hold_mean_errors_cm": {
+      "left": 1.6758050147828794,
+      "right": 0.9749186270789197,
+      "head": 0.33706496847922096
+    },
+    "hold_ready_observed": true,
+    "position_feedback": true,
+    "hold_min_root_height_m": 0.7852936249959886,
+    "exit_phase": "complete",
+    "starting_error_cm": 0.6672106077518558,
+    "mean_final_error_cm": 0.620445126987302,
+    "max_final_error_cm": 0.6952791452474655,
+    "measured_displacement_m": [
+      0.0024312116304550657,
+      0.004825364137734878,
+      0.0488620522646481
+    ],
+    "min_root_height_m": 0.7853102121538003,
+    "max_root_height_m": 0.7860483307901291,
+    "both_feet_contact_fraction": 1.0,
+    "right_correction_at_limit_fraction": 0.0,
+    "final_window_samples": 20,
+    "final_window_span_s": 0.9700899389999904,
+    "within_2cm_for_final_second": true,
+    "trial": "up_1",
+    "returncode": 0
+  },
+  {
+    "simulation_only": true,
+    "requested_displacement_m": [
+      0.0,
+      0.0,
+      -0.05
+    ],
+    "ramp_duration_s": 2,
+    "reference": "SONIC offset hand point relative to pelvis; not racket center",
+    "completed": true,
+    "virtual_support": false,
+    "final_hold_mean_errors_cm": {
+      "left": 1.6455030831238584,
+      "right": 1.0572261857321588,
+      "head": 0.24230735451018526
+    },
+    "hold_ready_observed": true,
+    "position_feedback": true,
+    "hold_min_root_height_m": 0.7848711538877918,
+    "exit_phase": "complete",
+    "starting_error_cm": 0.6175394712972969,
+    "mean_final_error_cm": 6.4727875723501755,
+    "max_final_error_cm": 6.489750934646735,
+    "measured_displacement_m": [
+      0.004527786907865261,
+      -0.026700285511867372,
+      0.002123230868028042
+    ],
+    "min_root_height_m": 0.7849801267288431,
+    "max_root_height_m": 0.7854990207067429,
+    "both_feet_contact_fraction": 1.0,
+    "right_correction_at_limit_fraction": 0.5955882352941176,
+    "final_window_samples": 19,
+    "final_window_span_s": 0.9200319129995478,
+    "within_2cm_for_final_second": false,
+    "trial": "down_1",
+    "returncode": 0
+  },
+  {
+    "simulation_only": true,
+    "requested_displacement_m": [
+      0.0,
+      0.05,
+      0.0
+    ],
+    "ramp_duration_s": 2,
+    "reference": "SONIC offset hand point relative to pelvis; not racket center",
+    "completed": true,
+    "virtual_support": false,
+    "final_hold_mean_errors_cm": {
+      "left": 1.5594082326505865,
+      "right": 1.0818866445485056,
+      "head": 0.4055026566707686
+    },
+    "hold_ready_observed": true,
+    "position_feedback": true,
+    "hold_min_root_height_m": 0.7860149996283203,
+    "exit_phase": "complete",
+    "starting_error_cm": 0.788907649689132,
+    "mean_final_error_cm": 6.282066694606557,
+    "max_final_error_cm": 6.311656840091976,
+    "measured_displacement_m": [
+      0.029354232183997436,
+      0.0014119391915483614,
+      0.02001648358714589
+    ],
+    "min_root_height_m": 0.7859709400965763,
+    "max_root_height_m": 0.7867829696235782,
+    "both_feet_contact_fraction": 1.0,
+    "right_correction_at_limit_fraction": 0.6102941176470589,
+    "final_window_samples": 19,
+    "final_window_span_s": 0.9174556029993255,
+    "within_2cm_for_final_second": false,
+    "trial": "left_2",
+    "returncode": 0
+  },
+  {
+    "simulation_only": true,
+    "requested_displacement_m": [
+      0.0,
+      -0.05,
+      0.0
+    ],
+    "ramp_duration_s": 2,
+    "reference": "SONIC offset hand point relative to pelvis; not racket center",
+    "completed": true,
+    "virtual_support": false,
+    "final_hold_mean_errors_cm": {
+      "left": 1.6535353413960887,
+      "right": 0.9280651719346847,
+      "head": 0.25899268058888825
+    },
+    "hold_ready_observed": true,
+    "position_feedback": true,
+    "hold_min_root_height_m": 0.785156098273008,
+    "exit_phase": "complete",
+    "starting_error_cm": 0.6704385425369578,
+    "mean_final_error_cm": 0.6766522304640187,
+    "max_final_error_cm": 0.7512165127363793,
+    "measured_displacement_m": [
+      -0.005490278816969757,
+      -0.04825227184286052,
+      -0.0016950413539033593
+    ],
+    "min_root_height_m": 0.7851000754155317,
+    "max_root_height_m": 0.7857522004368388,
+    "both_feet_contact_fraction": 1.0,
+    "right_correction_at_limit_fraction": 0.0,
+    "final_window_samples": 20,
+    "final_window_span_s": 0.9709709640001165,
+    "within_2cm_for_final_second": true,
+    "trial": "right_2",
+    "returncode": 0
+  },
+  {
+    "simulation_only": true,
+    "requested_displacement_m": [
+      0.0,
+      0.0,
+      0.05
+    ],
+    "ramp_duration_s": 2,
+    "reference": "SONIC offset hand point relative to pelvis; not racket center",
+    "completed": true,
+    "virtual_support": false,
+    "final_hold_mean_errors_cm": {
+      "left": 1.6565891701428939,
+      "right": 1.0150744165494276,
+      "head": 0.26995035662737865
+    },
+    "hold_ready_observed": true,
+    "position_feedback": true,
+    "hold_min_root_height_m": 0.7852795533871388,
+    "exit_phase": "complete",
+    "starting_error_cm": 0.7109368750905602,
+    "mean_final_error_cm": 0.8438780828662664,
+    "max_final_error_cm": 1.1629342067859605,
+    "measured_displacement_m": [
+      0.0036621671331113492,
+      0.003463960413457562,
+      0.04945604311172613
+    ],
+    "min_root_height_m": 0.78531606535588,
+    "max_root_height_m": 0.7859888221419181,
+    "both_feet_contact_fraction": 1.0,
+    "right_correction_at_limit_fraction": 0.0,
+    "final_window_samples": 19,
+    "final_window_span_s": 0.9253346139994392,
+    "within_2cm_for_final_second": true,
+    "trial": "up_2",
+    "returncode": 0
+  },
+  {
+    "simulation_only": true,
+    "requested_displacement_m": [
+      0.0,
+      0.0,
+      -0.05
+    ],
+    "ramp_duration_s": 2,
+    "reference": "SONIC offset hand point relative to pelvis; not racket center",
+    "completed": true,
+    "virtual_support": false,
+    "final_hold_mean_errors_cm": {
+      "left": 1.6135225005609435,
+      "right": 1.0484176695219198,
+      "head": 0.21827282286170532
+    },
+    "hold_ready_observed": true,
+    "position_feedback": true,
+    "hold_min_root_height_m": 0.7849157060673381,
+    "exit_phase": "complete",
+    "starting_error_cm": 0.8227498207571222,
+    "mean_final_error_cm": 6.5617597460960395,
+    "max_final_error_cm": 6.586642223863882,
+    "measured_displacement_m": [
+      0.005456641087698666,
+      -0.0238566916298823,
+      0.002114186295278958
+    ],
+    "min_root_height_m": 0.7850705152952515,
+    "max_root_height_m": 0.7857573861720092,
+    "both_feet_contact_fraction": 1.0,
+    "right_correction_at_limit_fraction": 0.5851851851851851,
+    "final_window_samples": 18,
+    "final_window_span_s": 0.9167887849998806,
+    "within_2cm_for_final_second": false,
+    "trial": "down_2",
+    "returncode": 0
+  }
+]

@@ -1,7 +1,22 @@
 __pycache__/
+*.pyc
+.venv*/
+.env
+.env.*
+runtime/
+runs/
+recordings/
+*.log
+*.mp4
+*.avi
+*.msgpack
+*.pt
+*.onnx
+*.engine
+
+# Existing repository exclusions
 *.py[cod]
 .venv/
 .ball-venv/
 models/*.pt
-*.log
 *.csv

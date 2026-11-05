@@ -1,0 +1,7 @@
+from pathlib import Path
+p=Path('/home/jingxuan/Documents/Codex/2026-10-02/zhzeze/outputs/G1-Viser/repo/g1')
+f=p/'ball_worker.py';s=f.read_text().replace('parser.add_argument("--ready-file")','parser.add_argument("--ready-file")\n    parser.add_argument("--include-frame", action="store_true", help="Attach source stereo JPEG for same-frame measurement and replay")')
+s=s.replace('"inference_fps": rate, "timestamp": finished}', '"inference_fps": rate, "timestamp": finished,\n                      "capture_monotonic_ns": packet.get("capture_monotonic_ns"),\n                      "source_received_monotonic": received}\n            if args.include_frame:\n                result["source_jpg"] = packet["jpg"]\n                result["calibration"] = packet["calibration"]')
+f.write_text(s)
+f=p/'stereo_viser.py';s=f.read_text();s=s.replace('if ball_pose is not None and T_smooth is not None and time.time() - last_seen < 0.5:\n                point = (T_smooth @ np.r_[ball_pose["xyz_left"], 1])[:3]', 'if ball_pose is not None and (ball_result.get("world_measurement") or\n                                          (T_smooth is not None and time.time() - last_seen < 0.5)):\n                if ball_result.get("world_measurement"):\n                    point = np.asarray(ball_result.get("xyz_world") if ball_result.get("xyz_world") is not None\n                                       else [np.nan, np.nan, np.nan])\n                else:\n                    point = (T_smooth @ np.r_[ball_pose["xyz_left"], 1])[:3]')
+f.write_text(s)

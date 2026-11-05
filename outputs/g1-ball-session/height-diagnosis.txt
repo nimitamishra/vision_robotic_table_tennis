@@ -1,0 +1,44 @@
+Height-vs-distance diagnosis, 2026-10-16
+
+No live calibration or measurement corrections were applied.
+
+1. Repeatability
+Contour height at the near position: 27.71 cm initially, 27.79 cm on return.
+Far position: 28.86 cm. Return agreement is ~0.8 mm; position-linked change ~11.5 mm.
+Support height is user-measured approximately 27.5 cm. Exact far Y readings were
+not explicitly supplied. Flat table and upright unchanged support are assumptions.
+
+2. Fixed pose reprocessing
+Using one identical camera-to-table transform for all ball measurements:
+near 27.71 cm; middle/far 28.43 cm; far 28.93 cm; near return 27.82 cm.
+Thus frame-to-frame tag pose variation is not the main explanation. This does
+NOT rule out a constant error in that transform or in the tabletop normal.
+
+3. Stereo tabletop reconstruction
+For 16 sampled frames per usable position, matched AprilTag corners on current
+visible tags 0/2/4/5 were triangulated from factory stereo calibration and a plane
+was fitted with residual outlier rejection. Old saved fallback-tag poses were NOT used.
+Plane residual RMS ~2.3-3.0 mm. Spatial Y coverage is only ~40 cm.
+Ball heights above the reconstructed plane: near 28.21 cm, 60 target 28.99 cm,
+80 target 29.16 cm, near return 28.34 cm. A distance-linked difference remains.
+This is a diagnostic, NOT an independent ground-truth plane or validated correction:
+it shares the same cameras/calibration, has limited spatial coverage, and assumes
+all detected tag corners lie on the physical tabletop.
+
+4. Separate tag 5 pose estimates
+Using left-only and right-only tag 5 estimates, both retain the near-to-far
+height rise. Stereo pose fusion alone is not a sufficient explanation.
+
+5. Pixel sensitivity (conditional, not a proposed correction)
+Assuming the left viewing ray, table pose and 27.5 cm height are correct, changing
+right horizontal center by about 0.15 px near / 0.58 px far would reconcile height.
+This only quantifies sensitivity. It does not identify which measurement is wrong.
+
+Remaining candidates: spatial bias in intensity-contour ball centers; stereo
+intrinsics/extrinsics or image localization biases; constant table-pose error;
+physical reference accuracy. Current evidence cannot uniquely separate them.
+
+Next independent check: measure tag 5 outer BLACK-square side (exclude white
+paper margin). Current configured tag_size_m = 0.08542526488926783 (~85.43 mm).
+Then use a physically measured planar calibration target spanning the range;
+verify stereo reconstruction and table pose independently of ball segmentation.
