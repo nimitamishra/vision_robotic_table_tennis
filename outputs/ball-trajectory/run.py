@@ -5,7 +5,7 @@ from pathlib import Path
 from collections import deque
 import numpy as np
 import zmq,msgpack
-from tracker import Tracker,measurement,G
+from tracker import Tracker,measurement,stereo_range_sigma,G
 from collision import forecast as collision_forecast
 from intercept_session import Session
 
@@ -42,7 +42,11 @@ def main():
     calibration=json.loads((a.g1_dir/'calibration.json').read_text());table_spec=calibration['world']['table']
     intercept=Session(out);test_commands=queue.Queue();last_test_ui=0.
     impact={'enabled':True,'restitution':a.restitution,'retention':a.tangent_retention}
-    tracker=Tracker(a.max_gap,a.contour_sigma,a.box_sigma,a.table_z,horizon=a.horizon)
+    near=-float(table_spec['tag_center_inset_m'])
+    half=float(table_spec['width_m'])/2
+    bounds=(-half,half,near,near+float(table_spec['length_m']))
+    tracker=Tracker(a.max_gap,a.contour_sigma,a.box_sigma,a.table_z,horizon=a.horizon,
+                    table_bounds=bounds,restitution=a.restitution,tangent_retention=a.tangent_retention)
     ctx=zmq.Context();pub=ctx.socket(zmq.PUB);pub.setsockopt(zmq.SNDHWM,1);pub.bind(a.publish)
     sub=None;stop=False;server=None;trail=deque(maxlen=60);last_epoch=None;last_packet=time.monotonic();stale_sent=False
     def end(*_):
@@ -69,19 +73,20 @@ def main():
         def change_horizon(_):tracker.horizon=float(horizon_control.value)
         collision_toggle=server.gui.add_checkbox('Collision forecast',True)
         @collision_toggle.on_update
-        def enable_collision(_):impact['enabled']=collision_toggle.value
+        def enable_collision(_):impact['enabled']=collision_toggle.value;tracker.impact_enabled=bool(collision_toggle.value)
         restitution_control=server.gui.add_slider('Restitution (uncalibrated)',min=0.,max=1.,step=.05,initial_value=a.restitution)
         @restitution_control.on_update
-        def change_restitution(_):impact['restitution']=float(restitution_control.value)
+        def change_restitution(_):impact['restitution']=float(restitution_control.value);tracker.restitution=impact['restitution']
         retention_control=server.gui.add_slider('Horizontal retention',min=0.,max=1.,step=.05,initial_value=a.tangent_retention)
         @retention_control.on_update
-        def change_retention(_):impact['retention']=float(retention_control.value)
+        def change_retention(_):impact['retention']=float(retention_control.value);tracker.tangent_retention=impact['retention']
         session_fit=server.gui.add_button('Try session impact fit (0.90 / 0.60)')
         server.gui.add_markdown('Experimental fit from 3 impacts on Oct 30; not a universal ball/table calibration.')
         @session_fit.on_click
         def try_session_fit(_):
             restitution_control.value=.9;retention_control.value=.6
             impact['restitution']=.9;impact['retention']=.6
+            tracker.restitution=.9;tracker.tangent_retention=.6
         collision_marker=server.scene.add_icosphere('/collision',radius=.03,color=(255,75,75),visible=False)
         collision_info=server.gui.add_html(fixed_panel('Collision: waiting for velocity estimate.', 150))
         show_table=server.gui.add_checkbox('Show table',True)
@@ -203,8 +208,11 @@ def main():
                 if not isinstance(stamp,(int,float)) or not np.isfinite(stamp):
                     result={'status':'missing_capture_timestamp','predictions':[]}
                 else:
-                    p,source=measurement(packet);result=tracker.step(stamp*1e-9,p,source)
+                    p,source=measurement(packet)
+                    range_sigma=stereo_range_sigma(packet,source) if p is not None else None
+                    result=tracker.step(stamp*1e-9,p,source,range_sigma_m=range_sigma)
                     result['raw_position_m']=p.tolist() if p is not None else None
+                    result['input_range_sigma_m']=range_sigma
                     result['input_status']=packet.get('measurement_status') or ('valid_3d' if p is not None else 'no_valid_3d')
                     result['requested_horizon_s']=tracker.horizon
                     result['impact_settings']=dict(impact)

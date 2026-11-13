@@ -1,0 +1,15 @@
+{
+  "measured_on_installed_racket": false,
+  "measured_wrist_to_grip_distance_m": 0.12,
+  "wrist_to_grip_center_m": null,
+  "grip_to_face_center_m": null,
+  "face_shape": "sphere",
+  "face_normal_wrist": null,
+  "face_diameter_m": 0.15,
+  "face_thickness_m": null,
+  "handle_radius_m": 0.012,
+  "gripper_envelope_radius_m": null,
+  "measurement_margin_m": 0.02,
+  "rough_grip_to_face_center_range_m": [0.15, 0.20],
+  "notes": "Face width, handle thickness, and 12 cm wrist-cylinder-center to blue-tape-center distance came from the user's measurements. The wrist-frame vector direction, grip-to-face vector, face normal, face thickness and gripper envelope remain uncalibrated. This template is intentionally rejected by the audit."
+}

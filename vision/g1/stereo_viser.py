@@ -28,6 +28,13 @@ HERE = Path(__file__).parent
 URDF_PATH = HERE / "g1_description" / "g1_29dof_rev_1_0.urdf"
 NECK_PIVOT_TORSO = np.array([0.0, 0.0, 0.30])
 TAG_FLIP = np.diag([1.0, -1.0, -1.0, 1.0])
+RIGHT_ARM_JOINTS = (
+    "right_shoulder_pitch_joint", "right_shoulder_roll_joint",
+    "right_shoulder_yaw_joint", "right_elbow_joint", "right_wrist_roll_joint",
+    "right_wrist_pitch_joint", "right_wrist_yaw_joint",
+)
+# SONIC's right VR tracking point, expressed in the wrist-yaw link frame.
+RIGHT_WRIST_TRACKING_OFFSET = np.array([0.18, 0.025, 0.0, 1.0])
 
 
 def select_ball_measurement(result, prefer_contour):
@@ -127,6 +134,8 @@ def main():
     parser.add_argument("--detection-scale", type=int, default=1)
     parser.add_argument("--ball-port", type=int, default=5561)
     parser.add_argument("--joint-port", type=int, default=5562)
+    parser.add_argument("--pose-port", type=int, default=5565,
+                        help="localhost-only read-only robot pose stream")
     args = parser.parse_args()
 
     calibration = json.loads(Path(args.calib).read_text())
@@ -153,6 +162,10 @@ def main():
     ball_socket.setsockopt(zmq.CONFLATE, 1)
     ball_socket.setsockopt(zmq.LINGER, 0)
     ball_socket.connect(f"tcp://127.0.0.1:{args.ball_port}")
+    pose_socket = ball_context.socket(zmq.PUB)
+    pose_socket.setsockopt(zmq.SNDHWM, 1)
+    pose_socket.setsockopt(zmq.LINGER, 0)
+    pose_socket.bind(f"tcp://127.0.0.1:{args.pose_port}")
     left_intr, right_intr = stream.left_intr, stream.right_intr
     T_left_right, T_left_color = stream.T_left_right, stream.T_left_color
     detector = Detector(families=world["tag_family"], quad_decimate=1.0, refine_edges=1)
@@ -190,7 +203,9 @@ def main():
     robot_root = server.scene.add_frame("/robot", show_axes=True, axes_length=0.12, axes_radius=0.004)
     robot = ViserUrdf(server, urdf, root_node_name="/robot")
     robot_cfg = np.zeros(len(robot.get_actuated_joint_limits()))
-    waist_cfg_index = robot.get_actuated_joint_names().index("waist_yaw_joint")
+    cfg_names = robot.get_actuated_joint_names()
+    waist_cfg_index = cfg_names.index("waist_yaw_joint")
+    right_arm_cfg_indices = [cfg_names.index(name) for name in RIGHT_ARM_JOINTS]
     robot.update_cfg(robot_cfg)
     server.scene.add_frame("/measurements", show_axes=False)
     robot_floor_marker = server.scene.add_icosphere("/measurements/robot_floor", radius=0.03,
@@ -257,6 +272,7 @@ def main():
     active_reference = None
     pelvis_pos = None
     active_waist_yaw = None
+    active_right_arm_q = None
     try:
         while True:
             try:
@@ -275,11 +291,25 @@ def main():
                 continue
             joint_sample = joints.nearest(stream.last_frame_monotonic_ns)
             waist_yaw = float(joint_sample["waist_yaw_rad"]) if joint_sample is not None else 0.0
-            if active_waist_yaw != waist_yaw:
+            q = (np.asarray(joint_sample.get("right_arm_q_rad"), dtype=float)
+                 if joint_sample is not None and joint_sample.get("right_arm_q_rad") is not None
+                 else None)
+            dq = (np.asarray(joint_sample.get("right_arm_dq_rad_s"), dtype=float)
+                  if joint_sample is not None and joint_sample.get("right_arm_dq_rad_s") is not None
+                  else None)
+            arm_valid = (q is not None and dq is not None and q.shape == (7,)
+                         and dq.shape == (7,) and np.all(np.isfinite(q))
+                         and np.all(np.isfinite(dq)))
+            if active_waist_yaw != waist_yaw or (arm_valid and
+                    (active_right_arm_q is None or not np.array_equal(q, active_right_arm_q))):
                 robot_cfg[waist_cfg_index] = waist_yaw
+                if arm_valid:
+                    robot_cfg[right_arm_cfg_indices] = q
                 # The Viser robot and the FK calculation share this URDF object.
                 robot.update_cfg(robot_cfg)
                 active_waist_yaw = waist_yaw
+                if arm_valid:
+                    active_right_arm_q = q.copy()
             T_pelvis_color = urdf.get_transform("d435_link", "pelvis") @ T_D435LINK_OPTICAL
             try:
                 ball_result = msgpack.unpackb(ball_socket.recv(zmq.NOBLOCK), raw=False)
@@ -305,6 +335,17 @@ def main():
                 active_reference = visible_reference
 
             pose_fresh = T_smooth is not None and time.time() - last_seen < 0.5
+            pose_packet = {
+                "capture_monotonic_ns": stream.last_frame_monotonic_ns,
+                "frame_id": left_id,
+                "pose_fresh": bool(pose_fresh),
+                "reference_tag_id": active_reference if pose_fresh else None,
+                "reference_seen_both_cameras": (
+                    tag_id in {tag.tag_id for tag in left_tags}
+                    and tag_id in {tag.tag_id for tag in right_tags}),
+                "joint_fresh": joint_sample is not None,
+                "right_arm_fresh": bool(arm_valid),
+            }
             if T_smooth is not None:
                 left_frame, _ = cameras["left"]
                 right_frame, _ = cameras["right"]
@@ -322,6 +363,13 @@ def main():
                     gui_pelvis.value = " ".join(f"{v:+.3f}" for v in pelvis_pos)
                     robot_floor_marker.position = (pelvis_pos[0], pelvis_pos[1],
                                                    -table_spec["height_m"] + 0.015)
+                    pose_packet["T_world_pelvis"] = T_world_pelvis.tolist()
+                    if arm_valid:
+                        T_pelvis_wrist = urdf.get_transform("right_wrist_yaw_link", "pelvis")
+                        pose_packet["right_hand_pelvis_m"] = (
+                            T_pelvis_wrist @ RIGHT_WRIST_TRACKING_OFFSET)[:3].tolist()
+                        pose_packet["right_arm_q_rad"] = q.tolist()
+                        pose_packet["right_arm_dq_rad_s"] = dq.tolist()
                 robot_floor_marker.visible = pose_fresh
 
                 if pose_fresh and count % 5 == 0:
@@ -366,6 +414,10 @@ def main():
                 for key, frame in other_tags.items():
                     if time.time() - last_tag_seen.get(key, 0) > 2:
                         frame.visible = False
+
+            # A timestamped, read-only local feed for policy shadow tests.
+            # No pose or arm target is published when its source is stale.
+            pose_socket.send(msgpack.packb(pose_packet, use_bin_type=True))
 
             ball_fresh = ball_result is not None and time.monotonic() - ball_result["timestamp"] < 0.4
             refined_mode = gui_ball_method.value != "Box center"
@@ -442,6 +494,7 @@ def main():
         joints.close()
         stream.close()
         ball_socket.close()
+        pose_socket.close()
         ball_context.term()
 
 

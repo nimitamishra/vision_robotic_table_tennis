@@ -8,4 +8,11 @@ export LD_LIBRARY_PATH="$TensorRT_ROOT/lib:$CUDA_HOME/lib64:${LD_LIBRARY_PATH:-}
 set +u
 source scripts/setup_env.sh >/dev/null
 # Simulation only: fixed loopback interface, private input/output ports.
-exec ./target/release/g1_deploy_onnx_ref lo policy/release/model_decoder.onnx reference/example/ --obs-config policy/release/observation_config.yaml --encoder-file policy/release/model_encoder.onnx --planner-file planner/target_vel/V2/planner_sonic.onnx --input-type zmq_manager --output-type zmq --zmq-host 127.0.0.1 --zmq-port 15576 --zmq-out-port 15577 --disable-crc-check
+extra=()
+if [[ "${SONIC_SIM_HOLD_INIT_UPPER_BODY:-0}" == "1" ]]; then
+  extra+=(--sim-init-hold-upper-body)
+fi
+if [[ "${SONIC_SIM_RIGHT_ARM_SERVO:-0}" == "1" ]]; then
+  extra+=(--sim-right-arm-direct-servo)
+fi
+exec ./target/release/g1_deploy_onnx_ref lo policy/release/model_decoder.onnx reference/example/ --obs-config policy/release/observation_config.yaml --encoder-file policy/release/model_encoder.onnx --planner-file planner/target_vel/V2/planner_sonic.onnx --input-type zmq_manager --output-type zmq --zmq-host 127.0.0.1 --zmq-port 15576 --zmq-out-port 15577 --disable-crc-check "${extra[@]}"

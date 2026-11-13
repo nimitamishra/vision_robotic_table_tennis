@@ -5,7 +5,7 @@
   },
   {
     "path": "README.md",
-    "sha256": "a739082e34d73e31da901b96abbb13dd7e4b56b1b0330b71cc66129f1e3ae19a"
+    "sha256": "9b2c7b110d32bd71a8c2bdd81562722e2bd88176b5f0ecf1acc212e694fb1aab"
   },
   {
     "path": "README.txt",
@@ -305,7 +305,7 @@
   },
   {
     "path": "outputs/G1-Studio/app.py",
-    "sha256": "ecb3df6250f3a6e146b0ed07d7501ec11adc7a930ce12afbf29ab11898aa83fd"
+    "sha256": "3a5696e2ff7bd12093441ec20092afd3c23c5134c0022db4d75a32848cdb3af0"
   },
   {
     "path": "outputs/G1-Studio/camera_relay.py",
@@ -389,7 +389,7 @@
   },
   {
     "path": "outputs/ball-trajectory/run.py",
-    "sha256": "4c4d848e5d2147636adcf9018960f544f4e98b242bcfda3eecf2a44a2777987c"
+    "sha256": "b0dec35422ff98a29acfc66af1dbe8cfb3c0a144771862105470572af95b9506"
   },
   {
     "path": "outputs/ball-trajectory/start.sh",
@@ -405,11 +405,11 @@
   },
   {
     "path": "outputs/ball-trajectory/test_tracker.py",
-    "sha256": "0d29f4a8b1950bb6046d21fee228c5640be4473a9692c614b255f38a763cbea5"
+    "sha256": "fe73319a9090cd1bbb41ae7e7b7a88d5999a4aa91d3d83e3d38ca7a280dbf4fa"
   },
   {
     "path": "outputs/ball-trajectory/tracker.py",
-    "sha256": "3e2fdd3c60e20b22d29890539698a1e6ede48e1dce06b0f1f7ac31d47063a3d3"
+    "sha256": "84d72952144af9bc1244be30c8851d224edc26a1267a78625d9191403fd99892"
   },
   {
     "path": "outputs/g1-ball-session/README.txt",
@@ -432,12 +432,100 @@
     "sha256": "2c4d74137264d0aa229eceaa0ffb0cce93fb022d7cc5601b54fb293a15f5ddc2"
   },
   {
+    "path": "outputs/gripper-control/right-only.conf",
+    "sha256": "138447f5f04e28e3e4ebfcca1385e59bc2661a4913f879e2bb0b42777ae0a369"
+  },
+  {
+    "path": "outputs/gripper-control/test_right_only.py",
+    "sha256": "002ae9a58e838f16fb3d38514141259b4bec1cf14524292dac7ad16d4d4a4425"
+  },
+  {
+    "path": "outputs/gripper-control/yam_gripper_server_main.py",
+    "sha256": "e22208307ab0fe80114677f718195f03df4ad121990a3b14ca094616150b6a27"
+  },
+  {
+    "path": "outputs/rl-interception/README.md",
+    "sha256": "d61ea7d1fb65c105d41f1b19b811bedb87afadfd2f4d50841bd0bc80190f126e"
+  },
+  {
+    "path": "outputs/rl-interception/ball_proxy_env.py",
+    "sha256": "ee0e29bfde83c2c6a8e9f58af75a4ade614cc23fe0b35bbe4ec940c05c42abbd"
+  },
+  {
+    "path": "outputs/rl-interception/demo_rollouts.py",
+    "sha256": "3242cf8401c574d4e883a84c1b2f6a0517e10a9182eb5d896d9c5b61f72e9c94"
+  },
+  {
+    "path": "outputs/rl-interception/demo_viewer.py",
+    "sha256": "d576468bb8a9146775c69f17c9b4a2108b6b54ebd0fd79e5574fcc0dd1012167"
+  },
+  {
+    "path": "outputs/rl-interception/fixed_arm_env.py",
+    "sha256": "b688a033c5be74a3014646db03780e3d4707c02e38485963611686f145be432a"
+  },
+  {
+    "path": "outputs/rl-interception/live_shadow.py",
+    "sha256": "0cd1796efa72fac99acef664dbefab745b9f12545210cfd5627729e3febfc468"
+  },
+  {
+    "path": "outputs/rl-interception/packet_preview.py",
+    "sha256": "d75c2bdee35f8338d073d4d294a3a446f30b91793777b487dcfd13aef2d420b5"
+  },
+  {
+    "path": "outputs/rl-interception/policy_adapter.py",
+    "sha256": "88f48916be75b508075e32e8631551fd0ce5949b8f43fe46b18fc6ca81f56084"
+  },
+  {
+    "path": "outputs/rl-interception/test_ball_proxy_env.py",
+    "sha256": "af7ae0c2e07c4c432c6471f837d291e8a8297b37c98a196c21d5273d6775e7bc"
+  },
+  {
+    "path": "outputs/rl-interception/test_fixed_arm_env.py",
+    "sha256": "2a3f238f22a090c757627334fcb76304284ed89ce56b5601bf7825d350d83d52"
+  },
+  {
+    "path": "outputs/rl-interception/test_live_shadow.py",
+    "sha256": "c1f8d6dbe45c29aad6abf1a10a0ecf52d8828034910ec5a78ffb64240f9b028a"
+  },
+  {
+    "path": "outputs/rl-interception/test_policy_adapter.py",
+    "sha256": "5e4ee36dd6c0c6d5a428257fd04c65c958d33c7b891c09022ad51045b67a4b20"
+  },
+  {
+    "path": "outputs/rl-interception/train_ball_proxy.py",
+    "sha256": "9d73760aba029194cbbd6bfb97941ea88a0a3b401a02e99257ee9cadb0aa3b54"
+  },
+  {
+    "path": "outputs/rl-interception/train_reach_policy.py",
+    "sha256": "e0bfcb5447ef8c49649b5fe773361dff124082e1fd6dd6ca7821c8000326c385"
+  },
+  {
+    "path": "outputs/sonic-reach-test/OFFLINE_PATH_REVIEW.md",
+    "sha256": "e550ace854d44159a5738dd2430b8b90877eca18ecfe9bb4dca500d5bcb0105c"
+  },
+  {
+    "path": "outputs/sonic-reach-test/PHOTO_STATIC_REVIEW.md",
+    "sha256": "ea8bbba038506a3242895c5445bad1352b40888f125aa8f57e4afcfc7d67e650"
+  },
+  {
+    "path": "outputs/sonic-reach-test/RACKET_AUDIT.md",
+    "sha256": "05986fc8773101b9661233fd73163acb9cfef4eb7edb6e1e8bde8ecf281ddfae"
+  },
+  {
     "path": "outputs/sonic-reach-test/README.txt",
-    "sha256": "09226648b5888288bea1855a4492914014d95d6f32b8613c74e628f1e6836006"
+    "sha256": "da062075f83d6c7b111771f3e5f460f013ddb670ce43c2e337bd02ef9a900ba5"
+  },
+  {
+    "path": "outputs/sonic-reach-test/READY_POSE_RESULTS.md",
+    "sha256": "68fbceee00ecbc0435c2cf217316112cad1c6ba84bf3d0dd79b188fa126add61"
   },
   {
     "path": "outputs/sonic-reach-test/batch_test.py",
     "sha256": "02755d345c4cb766b84ab386a531521b9b448d1c0f7c7f99d8764d1aab5c5f66"
+  },
+  {
+    "path": "outputs/sonic-reach-test/capture_live_pose.py",
+    "sha256": "cbe83dfc764fcd3e93f988dfdcdf08ad3f103345278c0ffb44611d646582e181"
   },
   {
     "path": "outputs/sonic-reach-test/checks.py",
@@ -445,15 +533,39 @@
   },
   {
     "path": "outputs/sonic-reach-test/controller.sh",
-    "sha256": "fcc470aceae0adfe5d6b678b38791b5d5720a65688e4e8a186ea4e9d81ef618a"
+    "sha256": "f8cf0d91fc1ee02aa37e2c28ef84e9629d2fd30fb01b84c34ccc490eb06e13d6"
   },
   {
     "path": "outputs/sonic-reach-test/feedback.py",
     "sha256": "44693454487b025be1e523c31e1463598c7357604b107e8d65eece6a047aff63"
   },
   {
+    "path": "outputs/sonic-reach-test/photo_static_sweep.py",
+    "sha256": "f5ff919991a2ccccd7f5b89107e78b2c7d8c59a17caab2dbbdc9065202dcf4ba"
+  },
+  {
+    "path": "outputs/sonic-reach-test/plan_short_reach.py",
+    "sha256": "c10f2ac6aba85a39f4b76c7f1184470d34484a5b4e6a4e45b0a4e8d7308a79cc"
+  },
+  {
+    "path": "outputs/sonic-reach-test/plot_reach.py",
+    "sha256": "e95e7c429b116bf2fde391b81bdb94799d49b3548b834db6b5bb8bd3e2ff9962"
+  },
+  {
+    "path": "outputs/sonic-reach-test/racket_clearance_audit.py",
+    "sha256": "b12161843f6047873cd4ed463505caf7d65625cec374b18ee9de445b04d892a2"
+  },
+  {
+    "path": "outputs/sonic-reach-test/racket_mount_template.json",
+    "sha256": "16e8685ed43e9a11f52d6f6f41b545e15ba9d11a3878b5b01b6a701aa58bc0e3"
+  },
+  {
+    "path": "outputs/sonic-reach-test/racket_path_sweep.py",
+    "sha256": "79bd4d94edfdf10e99b138530bedba766c963bd2327bc555781234e40f9b5c90"
+  },
+  {
     "path": "outputs/sonic-reach-test/sim_test.py",
-    "sha256": "1b8a360222cc51b7ddf99369127d6b66d0a4ffd1747584371583f1313806accd"
+    "sha256": "50624a2018e4702ab39117215b085ae847b7c1b529df4e3d31d0f2294fabe7ad"
   },
   {
     "path": "outputs/sonic-reach-test/start.sh",
@@ -461,7 +573,11 @@
   },
   {
     "path": "outputs/sonic-reach-test/summarize.py",
-    "sha256": "f4dcea784311178ce3643c914012179d6ddccc85d7b1c67d4cbfdc886a630cb4"
+    "sha256": "b2afbaee44f098fe3539a8a06cda141439593d5d58ee6d005a8431a76615a70f"
+  },
+  {
+    "path": "outputs/sonic-reach-test/table_contact_audit.py",
+    "sha256": "8deb9c8e0ce89120093721389333e62715bdb61d46ec3dd7db78bde8afd9be04"
   },
   {
     "path": "outputs/sonic-reach-test/test_checks.py",
@@ -472,8 +588,16 @@
     "sha256": "04b19ef10e486ae4b759875030dce403c661dafe46a3ad4a696fd8984b5391c6"
   },
   {
+    "path": "outputs/sonic-reach-test/test_racket_clearance_audit.py",
+    "sha256": "190f59cab24a4d4ef062d7cc440ec9f5334c0f62aa3ac831980e8b26a1a4af6a"
+  },
+  {
     "path": "outputs/sonic-reach-test/test_summary.py",
-    "sha256": "257378b08885c95d5ffd96e6e4461e6bb201cd1d02fb8f5040641724571022f4"
+    "sha256": "e78b7069809cc169034c6dcbe4d627d42b4fffdc78d09df0212c3ad6743ffd05"
+  },
+  {
+    "path": "outputs/sonic-reach-test/test_table_contact_audit.py",
+    "sha256": "9c2aaac807fff380ca8973b24903e773727bd2b34af62f7ad5ae32476effde42"
   },
   {
     "path": "outputs/sonic-reach-test/validation/results.html",
@@ -485,7 +609,7 @@
   },
   {
     "path": "outputs/sonic-reach-test/viewer.py",
-    "sha256": "f2389441b7132b08abb53c84235e9ba24442ce8c1e52477bae22d34e69231ed9"
+    "sha256": "5f12ce3f5439aaeded0de37dc517abf887f60e428d7597af41833a3f4026d5de"
   },
   {
     "path": "sonic/launch_sonic_control.sh",
@@ -525,7 +649,7 @@
   },
   {
     "path": "vision/g1/joint_state_server.py",
-    "sha256": "7c8ae35db4968a0de1cefb6ba43116022f4812f674924f4fc8a7bb3cf163116e"
+    "sha256": "cff7a6bbd8855c0f94dfb6ed29edfa5c90162d277c4bdfe47ff77c3d21dbde7e"
   },
   {
     "path": "vision/g1/joint_stream.py",
@@ -557,7 +681,7 @@
   },
   {
     "path": "vision/g1/stereo_viser.py",
-    "sha256": "a5ad214fa5fcaef0f26eda35d410cdb0ee395cce226f7efd5391a80bf57986d2"
+    "sha256": "dc678b2f792e3a9bc1ca44cb7ff0d5d75bf7b2ea719f17f424f0c71ba33b0e1c"
   },
   {
     "path": "vision/g1/table_scene.py",

@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from tracker import Tracker,G,measurement
+from tracker import Tracker,G,measurement,stereo_range_sigma
 
 class Tests(unittest.TestCase):
     def test_ballistic_prediction(self):
@@ -60,6 +60,24 @@ class Tests(unittest.TestCase):
         p,s=measurement({'world_measurement':True,'ball':{},'xyz_world':[1,2,3],'ball_refined':{},'xyz_world_refined':None})
         self.assertEqual(s,'box');np.testing.assert_equal(p,[1,2,3])
         p,s=measurement({'xyz_world':[1,2,3]});self.assertIsNone(p)
+    def test_far_stereo_measurement_gets_more_range_uncertainty(self):
+        far={'ball':{'xyz_left':[0,0,3.],
+                     'left_center_px':[224,70],'right_center_px':[220,70]}}
+        near={'ball':{'xyz_left':[0,0,.85],
+                      'left_center_px':[286,159],'right_center_px':[271,159]}}
+        self.assertGreater(stereo_range_sigma(far,'box'),.2)
+        self.assertLess(stereo_range_sigma(near,'box'),.06)
+        self.assertGreater(stereo_range_sigma(far,'box'),stereo_range_sigma(near,'box'))
+    def test_short_dropout_coasts_through_table_bounce(self):
+        tr=Tracker(table_bounds=(-.7625,.7625,-.0265,2.7135))
+        tr.x=np.array([0.,.2,.08,0.,-1.,-1.])
+        tr.P=np.eye(6)*.001;tr.t=0.;tr.last_seen=0.;tr.mode='tracking'
+        r=tr.step(.1,None)
+        self.assertEqual(r['status'],'coasting')
+        self.assertEqual(r['event'],'predicted_bounce')
+        self.assertFalse(r['measurement_accepted'])
+        self.assertGreater(r['position_m'][2],tr.contact_z)
+        self.assertGreater(r['velocity_m_s'][2],0)
     def test_initialization_gap(self):
         tr=Tracker()
         for i in range(3):tr.step(i/60,[0,0,1])

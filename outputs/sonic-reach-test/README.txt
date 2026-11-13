@@ -46,6 +46,25 @@ This test does not validate orientation accuracy, fast interception, racket-cent
 calibration, table-to-robot calibration or physical robot motion.
 Next: repeat small reaches in several directions before connecting ball forecasts.
 
+READY-POSE EXPERIMENTS (SIMULATION ONLY)
+The optional --absolute-right-target X Y Z supplies a pelvis-relative tracking
+point. --ramp-seconds and --hold-seconds set the timing. --stage-length 0.05
+divides an absolute VR target into at most 5 cm waypoints, each requiring one
+second below 2 cm position error before moving on. --right-joint-goal takes the
+seven right-arm joint angles in MuJoCo order and conditions SONIC on the
+17-joint upper-body target instead of the VR point during the reach. The VR
+point remains the evaluation target. --initial-right-q seeds the simulated arm
+with a measured starting pose. --hold-initial-upper-body tries to preserve that
+pose from startup; --hold-initial-vr also provides the initial three tracking
+points during startup. --startup-joint-feedback applies a bounded 0.6 rad
+simulation-only correction during the standing interval set by
+--standing-seconds. These options never select a physical robot interface.
+
+Run capture_live_pose.py to save a fresh read-only pose snapshot and preliminary
+position-only IK target. The model/observation discrepancy must be below 2 cm.
+The resulting joint vector is an IK estimate, not a safe robot command.
+Results and limitations are in READY_POSE_RESULTS.md.
+
 DIRECTIONAL BATCH TEST
 python3 batch_test.py --output /absolute/path/to/a/new/batch-directory
 Runs left (+Y), right (-Y), up (+Z), down (-Z), twice each, relative to pelvis.
@@ -62,3 +81,13 @@ Both feet maintained contact throughout all reach phases. This is directional
 tracking failure, not proof of its cause; workspace feasibility and model tracking
 from the current starting posture require further investigation. Do not connect
 ball forecasts to physical motion based on these tests.
+
+LATEST SHORT-REACH CHECK (SIMULATION ONLY)
+READY_POSE_RESULTS.md records the current-pose collision finding and 10/10
+repeatable 2 cm outward reaches. The old direct 2 cm forward path intersects
+the right hip and is rejected before motion. These tests use simulation-only
+arm gains and gravity compensation; they are not a physical G1 control path.
+The concise aggregate is runs/ready-edge-outward-validation.json.
+Use table_contact_audit.py /absolute/path/to/a/completed/run to replay a run
+against the saved tabletop and net. This offline audit uses a saved pose, and
+the racket is not yet installed or modeled.

@@ -12,6 +12,7 @@ VISION=BASE/'2026-10-02/zhzeze/outputs/G1-Viser'
 G1=VISION/'repo/g1'
 PY=BASE/'2026-10-02/zhzeze/work/vision-venv/bin/python'
 YOLO=BASE/'2026-09-22/wo/work/yolo_env/bin/python'
+SIM_PY=BASE/'2026-09-15/nih/work/GR00T-WholeBodyControl/.venv_sim/bin/python'
 SONIC=BASE/'2026-09-15/nih/work/GR00T-WholeBodyControl/gear_sonic_deploy'
 OLD=ROOT.parent
 RUN=ROOT/'runtime'; RUN.mkdir(exist_ok=True)
@@ -100,6 +101,11 @@ class Main(W.QMainWindow):
         self.button('Start Trajectory',self.start_trajectory,tr)
         self.button('Stop Trajectory',self.stop_trajectory,tr);tr.addStretch()
         tv.addWidget(W.QLabel('Single ball · velocity + gravity forecast · no robot motion commands'))
+        self.shadow_status=W.QLabel('Policy preview: waiting for trajectory · read-only')
+        self.shadow_status.setFixedHeight(26)
+        self.shadow_status.setToolTip('The policy preview never sends a command to SONIC.')
+        tv.addWidget(self.shadow_status)
+        self.shadow_run=None
         self.trajectory_web=QWebEngineView();tv.addWidget(self.trajectory_web,1)
         self.trajectory_web.setHtml('<body style="background:#101a29;color:#d8e4f5;font:18px sans-serif">Start Vision, then Start Trajectory. Predictions stop at the contact-height plane.</body>')
         self.trajectory_loaded=False
@@ -126,7 +132,7 @@ class Main(W.QMainWindow):
         self.button('Open Previous Multi-ball Comparison',lambda:G.QDesktopServices.openUrl(C.QUrl.fromLocalFile(str(OLD/'ball-recorder/multiball-review/before-after.mp4'))),r)
         r.addWidget(W.QLabel('Live 3D detection uses the existing single-ball pipeline. Previous multi-ball results are available as offline replay.'))
         self.tabs.addTab(record,'Recording && Replay')
-        logs=W.QWidget();l=W.QVBoxLayout(logs);self.logpick=W.QComboBox();self.logpick.addItems(['relay','worker','measure','viser','trajectory','camera-ssh','record','sonic']);l.addWidget(self.logpick)
+        logs=W.QWidget();l=W.QVBoxLayout(logs);self.logpick=W.QComboBox();self.logpick.addItems(['relay','worker','measure','viser','trajectory','shadow','camera-ssh','record','sonic']);l.addWidget(self.logpick)
         self.logtext=W.QPlainTextEdit();self.logtext.setReadOnly(True);l.addWidget(self.logtext);self.tabs.addTab(logs,'Logs')
         self.statusBar().showMessage('Opening this app does not start SONIC or send motion commands.')
         self.timer=C.QTimer(self);self.timer.timeout.connect(self.tick);self.timer.start(400)
@@ -160,7 +166,7 @@ class Main(W.QMainWindow):
         try:socket.inet_aton(host)
         except OSError:self.notice('Invalid IP address');return
         if self.alive('camera-ssh'):self.notice('Camera SSH window is already open');return
-        remote="pgrep -f '^/usr/bin/python3 -u /home/unitree/codex_camera/stereo_pose_server.py' >/dev/null || (nohup /usr/bin/python3 -u /home/unitree/codex_camera/stereo_pose_server.py --fps 60 --width 480 --height 270 >/tmp/codex-stereo-pose-server.log 2>&1 </dev/null &); pgrep -f '[/]home/unitree/codex_camera/joint_state_server.py' >/dev/null || (nohup env LD_LIBRARY_PATH=/usr/local/lib PYTHONPATH=/home/unitree/Projects/gr00t/external_dependencies/unitree_sdk2_python /home/unitree/codex_camera/.venv/bin/python /home/unitree/codex_camera/joint_state_server.py --port 5562 >/tmp/codex-joint-state-server.log 2>&1 </dev/null &); sleep 2; tail -n 8 /tmp/codex-stereo-pose-server.log"
+        remote="pgrep -f '^/usr/bin/python3 -u /home/unitree/codex_camera/stereo_pose_server.py' >/dev/null || (nohup /usr/bin/python3 -u /home/unitree/codex_camera/stereo_pose_server.py --fps 60 --width 480 --height 270 >/tmp/codex-stereo-pose-server.log 2>&1 </dev/null &); pgrep -f '^/home/unitree/codex_camera/.venv/bin/python /home/unitree/codex_camera/joint_state_server.py( |$)' >/dev/null || (nohup env LD_LIBRARY_PATH=/usr/local/lib PYTHONPATH=/home/unitree/Projects/gr00t/external_dependencies/unitree_sdk2_python /home/unitree/codex_camera/.venv/bin/python /home/unitree/codex_camera/joint_state_server.py --port 5562 >/tmp/codex-joint-state-server.log 2>&1 </dev/null &); sleep 2; tail -n 8 /tmp/codex-stereo-pose-server.log"
         self.launch('camera-ssh',['gnome-terminal','--wait','--title=G1 Camera Service','--','bash','-c','ssh -o ConnectTimeout=5 "$1" "$2"; printf "\\nPress Enter to close..."; read -r _','g1-camera',f'unitree@{host}',remote])
         self.notice('Camera SSH terminal opened. Enter the robot password when prompted. The camera service sends no motion commands.')
     def receive(self,name,d):
@@ -188,10 +194,15 @@ class Main(W.QMainWindow):
     def start_trajectory(self):
         if not self.alive('measure'):self.notice('Start Vision before starting Trajectory.');return
         self.trajectory_loaded=False
-        self.launch('trajectory',[PY,'-u',OLD/'ball-trajectory/run.py','--input',f'tcp://127.0.0.1:{self.measure_port}','--publish',f'tcp://127.0.0.1:{self.trajectory_pub}','--viser-port',str(self.trajectory_port),'--output',OLD/'ball-trajectory/runs'])
+        trajectory=self.launch('trajectory',[PY,'-u',OLD/'ball-trajectory/run.py','--input',f'tcp://127.0.0.1:{self.measure_port}','--publish',f'tcp://127.0.0.1:{self.trajectory_pub}','--viser-port',str(self.trajectory_port),'--output',OLD/'ball-trajectory/runs'])
+        if trajectory and not self.alive('shadow'):
+            self.shadow_run=self.session/f'policy-shadow-{time.monotonic_ns()}'
+            self.launch('shadow',[SIM_PY,'-u',OLD/'rl-interception/live_shadow.py','--trajectory',f'tcp://127.0.0.1:{self.trajectory_pub}','--pose','tcp://127.0.0.1:5565','--output',self.shadow_run])
     def stop_trajectory(self):
+        if self.alive('shadow'):self.procs['shadow'].stop()
         if self.alive('trajectory'):self.procs['trajectory'].stop()
         self.trajectory_loaded=False
+        self.shadow_status.setText('Policy preview: stopped · read-only')
     def check_trajectory_view(self):
         if self.alive('trajectory') and not self.trajectory_loaded:
             try:
@@ -243,6 +254,15 @@ class Main(W.QMainWindow):
                 self.reported.add(name)
                 if p.p.returncode not in (0,-15,-2):self.notice(f'{name} exited with code {p.p.returncode}. See Logs for details.')
         self.check_trajectory_view()
+        if self.shadow_run and self.alive('shadow'):
+            latest=self.shadow_run/'latest.json'
+            if latest.exists():
+                try:
+                    preview=json.loads(latest.read_text())
+                    status=preview.get('status','waiting')
+                    mismatch=' · arm pose differs from training' if preview.get('training_pose_mismatch') else ''
+                    self.shadow_status.setText(f'Policy preview: {status}{mismatch} · read-only')
+                except (OSError,ValueError):pass
         now=time.monotonic();camera=now-self.seen.get('camera',0)<2;det=now-self.seen.get('detection',0)<2
         self.state.setText(f"Camera {'Online' if camera else 'Offline'}  ·  Detection {'Online' if det else 'No fresh data'}  ·  SONIC {'Process running' if self.alive('sonic') else 'Stopped'}")
         if self.pending and camera:
