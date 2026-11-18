@@ -171,3 +171,7 @@ accuracy measurements, and do not resolve missed observations.
 31 unit tests pass, including exact contact, shallow/deep penetration, ascending
 motion, table-edge risk, and outside-table trajectories.
 Reproduce with check_contact_fix.py SESSION TEST --output REPORT.json.
+
+OFFLINE PREDICTION BENCHMARK
+See BENCHMARK.md for measurement replay, held-out uncertainty evaluation,
+the virtual-plane protocol, and a reproducible synthetic example.
