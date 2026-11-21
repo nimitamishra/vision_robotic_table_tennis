@@ -1,0 +1,8 @@
+{
+  "run": "/home/jingxuan/Documents/Codex/2026-10-16/ni/outputs/sonic-token-policy/forehand/runs/return-v4",
+  "policy_sha256": "0f254a8bfe60566b0654257d8befe3f8f14b223e5eac3a05ce50b0b05905cb85",
+  "audit_sha256": "1e0a25fd0bdd6d454d3022a8e369ebda080e7db5c998ccabed7329caa4f7cd3e",
+  "simulation_only": true,
+  "hardware_approved": false,
+  "status": "Experimental physical return: 10/80 narrow, 1/40 wider; not robust or hardware-ready"
+}

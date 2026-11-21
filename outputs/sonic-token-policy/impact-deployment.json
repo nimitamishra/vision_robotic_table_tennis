@@ -1,0 +1,9 @@
+{
+  "checkpoint": "/home/jingxuan/Documents/Codex/2026-10-16/ni/outputs/sonic-token-policy/runs/impact-v2/policy.pt",
+  "report": "/home/jingxuan/Documents/Codex/2026-10-16/ni/outputs/sonic-token-policy/runs/impact-v2/report.json",
+  "checkpoint_sha256": "2121e55c26a98a9f2a525251614baf25f84562edde54b17c220dfbc39b2298db",
+  "environment_sha256": "08d592cd7331a4e59ce3169cd8e441fa29f027191f2dc6fed7e66d0f60ef2115",
+  "return_fraction": 0.575,
+  "target": "local MuJoCo contact simulation only",
+  "hardware_approved": false
+}

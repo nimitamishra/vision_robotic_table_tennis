@@ -1,0 +1,12 @@
+{
+  "mode": "simulation_preview_only",
+  "hardware_approved": false,
+  "checkpoint": "/home/jingxuan/Documents/Codex/2026-10-16/ni/outputs/sonic-token-policy/forehand/runs/prior-v1/policy.pt",
+  "checkpoint_sha256": "a8316d19aa1e6906c28da72904874fd6ec968a902f4c2cd3293809fa7d1831f7",
+  "tracking_checkpoint": "/home/jingxuan/Documents/Codex/2026-10-16/ni/outputs/sonic-token-policy/forehand/runs/tracking-v1/policy.pt",
+  "tracking_checkpoint_sha256": "6d231b0cc44ad1db2d6c79eabd81ca1adac6e811091b6dfaeca2425bb2a108fa",
+  "audit": "/home/jingxuan/Documents/Codex/2026-10-16/ni/outputs/sonic-token-policy/forehand/runs/tracking-v1/final_audit.json",
+  "source_url": "https://github.com/dvij542/table-tennis-motion-kit",
+  "source_commit": "c6c4c061f8fcb24714fbe118a31e66c69adeb4bf",
+  "stage": "Forehand imitation and motion tracking, no return controller"
+}

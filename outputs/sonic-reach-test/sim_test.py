@@ -5,7 +5,8 @@ from collections import deque
 from checks import settled
 from feedback import update_correction
 import numpy as np
-import mujoco,zmq
+import mujoco,zmq,msgpack
+from token_stream import TokenReplay, token_packet, validate_token
 ROOT=Path(__file__).resolve().parent
 REPO=Path('/home/jingxuan/Documents/Codex/2026-09-15/nih/work/GR00T-WholeBodyControl')
 sys.path.insert(0,str(REPO))
@@ -17,7 +18,7 @@ def atomic(path,data):
     tmp=path.with_suffix('.tmp');tmp.write_text(json.dumps(data));tmp.replace(path)
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--output',type=Path,required=True);ap.add_argument('--duration',type=float,default=90);ap.add_argument('--position-feedback',action='store_true');ap.add_argument('--freeze-reach-feedback',action='store_true',help='Keep the settled hold correction constant during reach');ap.add_argument('--release-support',action='store_true',help='Legacy flag; grounded startup now always releases support');ap.add_argument('--delta',type=float,nargs=3,default=[.05,0,0]);ap.add_argument('--absolute-right-target',type=float,nargs=3,help='Pelvis-relative right tracking-point goal, simulation only');ap.add_argument('--right-joint-goal',type=float,nargs=7,help='Simulation-only right-arm joint target in MuJoCo order');ap.add_argument('--initial-right-q',type=float,nargs=7,help='Simulation-only initial right-arm joint position');ap.add_argument('--hold-initial-upper-body',action='store_true',help='Condition SONIC on the initial joint pose from startup, simulation only');ap.add_argument('--hold-initial-vr',action='store_true',help='Also condition startup on the initial three tracking points');ap.add_argument('--startup-joint-feedback',action='store_true',help='Bounded simulation-only feedback for the initial right-arm joint pose');ap.add_argument('--sim-right-arm-direct-servo',action='store_true',help='Loopback-only hybrid test: direct right-arm motor targets, SONIC for balance');ap.add_argument('--sim-arm-gravity-comp',action='store_true',help='MuJoCo-only right-arm gravity/bias feedforward; never sent to robot');ap.add_argument('--sim-arm-extra-kp',type=float,default=0.,help='Additional MuJoCo-only right-arm proportional torque gain');ap.add_argument('--sim-arm-extra-kd',type=float,default=0.,help='Additional MuJoCo-only right-arm damping torque gain');ap.add_argument('--sim-online-arm-ik',action='store_true',help='Plan a short arm reach from the settled simulated pose');ap.add_argument('--sim-right-arm-joint-feedback',action='store_true',help='Bounded joint correction during the simulated reach hold');ap.add_argument('--sim-right-arm-cartesian-feedback',action='store_true',help='Bounded hand-position correction during the simulated reach hold');ap.add_argument('--standing-seconds',type=float,default=6);ap.add_argument('--stage-length',type=float,help='Maximum distance of each simulated waypoint in metres');ap.add_argument('--stage-hold-seconds',type=float,default=1.5);ap.add_argument('--ramp-seconds',type=float,default=2);ap.add_argument('--hold-seconds',type=float,default=5);ap.add_argument('--auto-reach',action='store_true');ap.add_argument('--policy-checkpoint',type=Path);a=ap.parse_args();delta=np.array(a.delta);
+    ap=argparse.ArgumentParser();ap.add_argument('--output',type=Path,required=True);ap.add_argument('--duration',type=float,default=90);ap.add_argument('--position-feedback',action='store_true');ap.add_argument('--freeze-reach-feedback',action='store_true',help='Keep the settled hold correction constant during reach');ap.add_argument('--release-support',action='store_true',help='Legacy flag; grounded startup now always releases support');ap.add_argument('--delta',type=float,nargs=3,default=[.05,0,0]);ap.add_argument('--absolute-right-target',type=float,nargs=3,help='Pelvis-relative right tracking-point goal, simulation only');ap.add_argument('--right-joint-goal',type=float,nargs=7,help='Simulation-only right-arm joint target in MuJoCo order');ap.add_argument('--initial-right-q',type=float,nargs=7,help='Simulation-only initial right-arm joint position');ap.add_argument('--hold-initial-upper-body',action='store_true',help='Condition SONIC on the initial joint pose from startup, simulation only');ap.add_argument('--hold-initial-vr',action='store_true',help='Also condition startup on the initial three tracking points');ap.add_argument('--startup-joint-feedback',action='store_true',help='Bounded simulation-only feedback for the initial right-arm joint pose');ap.add_argument('--sim-right-arm-direct-servo',action='store_true',help='Loopback-only hybrid test: direct right-arm motor targets, SONIC for balance');ap.add_argument('--sim-arm-gravity-comp',action='store_true',help='MuJoCo-only right-arm gravity/bias feedforward; never sent to robot');ap.add_argument('--sim-arm-extra-kp',type=float,default=0.,help='Additional MuJoCo-only right-arm proportional torque gain');ap.add_argument('--sim-arm-extra-kd',type=float,default=0.,help='Additional MuJoCo-only right-arm damping torque gain');ap.add_argument('--sim-online-arm-ik',action='store_true',help='Plan a short arm reach from the settled simulated pose');ap.add_argument('--sim-right-arm-joint-feedback',action='store_true',help='Bounded joint correction during the simulated reach hold');ap.add_argument('--sim-right-arm-cartesian-feedback',action='store_true',help='Bounded hand-position correction during the simulated reach hold');ap.add_argument('--standing-seconds',type=float,default=6);ap.add_argument('--stage-length',type=float,help='Maximum distance of each simulated waypoint in metres');ap.add_argument('--stage-hold-seconds',type=float,default=1.5);ap.add_argument('--ramp-seconds',type=float,default=2);ap.add_argument('--hold-seconds',type=float,default=5);ap.add_argument('--auto-reach',action='store_true');ap.add_argument('--policy-checkpoint',type=Path);ap.add_argument('--record-token-state',action='store_true',help='Record live encoder tokens from the loopback controller');ap.add_argument('--token-replay',type=Path,help='Replay a recorded simulation latent sequence during reach');a=ap.parse_args();delta=np.array(a.delta);
     if not np.all(np.isfinite(delta)) or np.linalg.norm(delta)>.050001:raise SystemExit('Displacement must be finite and at most 5 cm.')
     if a.absolute_right_target is not None and (not np.all(np.isfinite(a.absolute_right_target)) or a.policy_checkpoint):raise SystemExit('Absolute target must be finite and cannot be combined with a policy checkpoint.')
     if a.right_joint_goal is not None and (a.absolute_right_target is None or not np.all(np.isfinite(a.right_joint_goal)) or a.policy_checkpoint):raise SystemExit('Right-joint goal requires a finite absolute tracking target and no policy checkpoint.')
@@ -37,12 +38,25 @@ def main():
     if a.stage_length is not None and (a.absolute_right_target is None or not .01<=a.stage_length<=.05 or a.policy_checkpoint or a.right_joint_goal is not None):raise SystemExit('Stage length requires an absolute target, no joint goal, and must be 1-5 cm.')
     if not 1<=a.stage_hold_seconds<=3:raise SystemExit('Stage hold must be 1-3 s.')
     if not 2<=a.ramp_seconds<=12 or not 3<=a.hold_seconds<=15:raise SystemExit('Ramp must be 2-12 s and hold 3-15 s.')
+    replay=TokenReplay(a.token_replay) if a.token_replay else None
+    if replay is not None:
+        if (not a.auto_reach or a.policy_checkpoint or a.sim_right_arm_direct_servo
+                or a.right_joint_goal or a.initial_right_q or a.hold_initial_upper_body):
+            raise SystemExit('Token replay requires automatic standard-controller simulation, without joint/direct-servo targets.')
+        source=json.loads((replay.path.parent/'config.json').read_text())
+        if (not np.allclose(source['delta_m'],delta) or source['ramp_seconds']!=a.ramp_seconds
+                or source['hold_seconds']!=a.hold_seconds
+                or replay.times[-1]<a.ramp_seconds+a.hold_seconds-.1):
+            raise SystemExit('Replay trajectory and duration must match the recorded source.')
+        if source.get('sim_right_arm_direct_servo') or source.get('sim_arm_gravity_comp'):
+            raise SystemExit('Cannot validate latent replay from a direct-servo source.')
     out=a.output.resolve()
     if a.policy_checkpoint:a.policy_checkpoint=a.policy_checkpoint.resolve()
     os.chdir(REPO)
     out.mkdir(parents=True,exist_ok=True)
     if (out/'samples.jsonl').exists():raise SystemExit('Choose a new output directory; previous samples will not be overwritten.')
     atomic(out/'config.json',{'delta_m':delta.tolist(),'absolute_right_target_m':a.absolute_right_target,'right_joint_goal_rad':a.right_joint_goal,'initial_right_q_rad':a.initial_right_q,'hold_initial_upper_body':a.hold_initial_upper_body,'hold_initial_vr':a.hold_initial_vr,'startup_joint_feedback':a.startup_joint_feedback,'sim_right_arm_direct_servo':a.sim_right_arm_direct_servo,'sim_arm_gravity_comp':a.sim_arm_gravity_comp,'sim_arm_extra_kp':a.sim_arm_extra_kp,'sim_arm_extra_kd':a.sim_arm_extra_kd,'sim_online_arm_ik':a.sim_online_arm_ik,'sim_right_arm_joint_feedback':a.sim_right_arm_joint_feedback,'sim_right_arm_cartesian_feedback':a.sim_right_arm_cartesian_feedback,'standing_seconds':a.standing_seconds,'stage_length_m':a.stage_length,'stage_hold_seconds':a.stage_hold_seconds,'ramp_seconds':a.ramp_seconds,'hold_seconds':a.hold_seconds,'auto_reach':a.auto_reach,'position_feedback':a.position_feedback,'freeze_reach_feedback':a.freeze_reach_feedback,'policy_checkpoint':str(a.policy_checkpoint.resolve()) if a.policy_checkpoint else None})
+    saved_config=json.loads((out/'config.json').read_text());saved_config.update(record_token_state=a.record_token_state,token_replay=str(replay.path) if replay else None);atomic(out/'config.json',saved_config)
     policy=None
     if a.policy_checkpoint:
         import torch
@@ -103,6 +117,9 @@ def main():
     pelvis=model.body('pelvis').id;offsets=np.array([[.18,-.025,0],[.18,.025,0],[0,0,.35]])
     ctx=zmq.Context();pub=ctx.socket(zmq.PUB);pub.bind('tcp://127.0.0.1:15576')
     logfile=(out/'controller.log').open('w');controller_env=os.environ.copy();controller_env['SONIC_SIM_HOLD_INIT_UPPER_BODY']='1' if a.hold_initial_upper_body else '0';controller_env['SONIC_SIM_RIGHT_ARM_SERVO']='1' if a.sim_right_arm_direct_servo else '0';controller=subprocess.Popen(['bash',str(ROOT/'controller.sh')],stdout=logfile,stderr=subprocess.STDOUT,start_new_session=True,env=controller_env)
+    token_sub=ctx.socket(zmq.SUB);token_sub.setsockopt(zmq.SUBSCRIBE,b'g1_debug');token_sub.setsockopt(zmq.LINGER,0);token_sub.connect('tcp://127.0.0.1:15577')
+    token_log=(out/'tokens.jsonl').open('w') if a.record_token_state else None
+    token_index=0;last_token_controller_index=-1;replay_observed=0;replay_matches=0;sent_tokens=deque(maxlen=10)
     stopped=False
     def stop(*_):
         nonlocal stopped
@@ -149,6 +166,7 @@ def main():
                 phase='online_ik_failed';stopped=True;return
             dynamic_joint_goal=solved.x
         trial_start=now;phase='reach';phase_start=now;stage_index=1;stage_start=now
+        if replay is not None:pub.send(build_command_message(False,False,False))
     if a.hold_initial_vr:
         targets=local_points()[0].copy()
         root_inv=data.xquat[pelvis].copy();root_inv[1:]*=-1
@@ -167,6 +185,24 @@ def main():
         if startup_pose_pin and '[SIM] INIT preserves measured upper-body pose' in (out/'controller.log').read_text(errors='replace'):
             startup_pose_pin=False
         actual,world=local_points()
+        for _ in range(100):
+            try:wire=token_sub.recv(zmq.NOBLOCK)
+            except zmq.Again:break
+            packet=msgpack.unpackb(wire[len(b'g1_debug'):],raw=False)
+            idx=packet.get('index',-1)
+            try:token=validate_token(packet.get('token_state'))
+            except (ValueError,TypeError):continue
+            if idx<=last_token_controller_index:continue
+            last_token_controller_index=idx
+            if replay is not None and phase in ('reach','complete') and sent_tokens:
+                replay_observed+=1
+                replay_matches+=int(any(np.max(np.abs(token-t))<1e-5 for t in sent_tokens))
+            if token_log is not None:
+                token_log.write(json.dumps({'simulation_only':True,'phase':phase,
+                    'trial_elapsed_s':None if trial_start is None else time.monotonic()-trial_start,
+                    'controller_index':idx,'token_state':token.tolist(),
+                    'debug':packet})+'\n');token_log.flush()
+
         if phase not in ['loading','connecting','lowering','grounding'] and data.xpos[pelvis,2]<.45:
             phase='unstable';stopped=True
         if controller.poll() is not None:phase='controller_exited';stopped=True
@@ -284,11 +320,17 @@ def main():
                 reach_joint_correction=commanded-nominal
                 joint_target[list(right_upper_idx)]=commanded
             send_vr=command_targets is not None and (not joint_mode or (a.hold_initial_vr and phase not in ('reach','complete')))
-            pub.send(build_planner_message(0,[0,0,0],[1,0,0],speed=0,
+            planner_wire=build_planner_message(0,[0,0,0],[1,0,0],speed=0,
                 upper_body_position=joint_target.tolist() if joint_target is not None else None,
                 upper_body_velocity=joint_velocity.tolist() if joint_velocity is not None else None,
                 vr_3pt_position=command_targets.ravel().tolist() if send_vr else None,
-                vr_3pt_orientation=orientations if send_vr else None))
+                vr_3pt_orientation=orientations if send_vr else None)
+            if replay is not None and phase in ('reach','complete'):
+                try:
+                    external_token=replay.at(now-trial_start);wire=token_packet(external_token,token_index)
+                except ValueError:phase='token_replay_exhausted';stopped=True;continue
+                pub.send(wire);sent_tokens.append(external_token);token_index+=1
+            else:pub.send(planner_wire)
             last_publish=now
         if now-last_save>=.05:
             if phase=='hold' and targets is not None:
@@ -296,6 +338,7 @@ def main():
             ready=bool(phase=='hold' and settled(hold_history,now) and (not a.hold_initial_upper_body or np.max(np.abs(data.qpos[qadr]-a.initial_right_q))<=.15))
             record={'trial_elapsed_s':None if trial_start is None else now-trial_start,'requested_displacement_m':delta.tolist(),'stage_index':stage_index,'stage_count':stage_count,'feet_in_contact':len(touching),'sim_time_s':float(data.time),'ready_for_reach':ready,'virtual_support':bool(env.elastic_band.enable),'startup_pose_pinned':startup_pose_pin,'time':now,'elapsed':now-started,'phase':phase,'root_height_m':float(data.xpos[pelvis,2]),'right_joint_positions_rad':data.qpos[qadr].tolist(),'startup_joint_correction_rad':startup_joint_correction.tolist(),'reach_joint_correction_rad':reach_joint_correction.tolist(),'actual_local_m':actual.tolist(),'actual_world_m':world.tolist(),'position_feedback':a.position_feedback,'command_local_m':command_targets.tolist() if command_targets is not None else None,'correction_m':correction.tolist(),'target_local_m':targets.tolist() if targets is not None else None,'body_positions':data.xpos.tolist(),'parents':model.body_parentid.tolist(),'root_rotation':data.xmat[pelvis].reshape(3,3).tolist(),'root_position':data.xpos[pelvis].tolist()}
             record['full_qpos']=data.qpos.tolist()
+            record['full_qvel']=data.qvel.tolist()
             record['right_arm_contacts']=[[names[model.geom_bodyid[c.geom1]],names[model.geom_bodyid[c.geom2]],float(c.dist)] for c in data.contact if model.geom_bodyid[c.geom1] in right_arm_body_ids or model.geom_bodyid[c.geom2] in right_arm_body_ids]
             if env.unitree_bridge.low_cmd:
                 cmds=env.unitree_bridge.low_cmd.motor_cmd[22:29]
@@ -314,6 +357,10 @@ def main():
             os.killpg(controller.pid,signal.SIGTERM)
             try:controller.wait(timeout=5)
             except subprocess.TimeoutExpired:os.killpg(controller.pid,signal.SIGKILL);controller.wait()
+        if replay is not None:
+            atomic(out/'token_replay_result.json',{'simulation_only':True,'source':str(replay.path),'sent_packets':token_index,'observed_controller_tokens':replay_observed,'matching_controller_tokens':replay_matches,'controller_confirmed_external_input':'[Token Safety] ✓ First token received!' in (out/'controller.log').read_text(errors='replace')})
+        if token_log is not None:token_log.close()
+        token_sub.close(0)
         logfile.close();sim.close();pub.close(0);ctx.term()
         if (out/'state.json').exists():
             final_state=json.loads((out/'state.json').read_text());final_state['phase']=phase;final_state['ready_for_reach']=False;atomic(out/'state.json',final_state)

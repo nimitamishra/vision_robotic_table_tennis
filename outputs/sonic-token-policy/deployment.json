@@ -1,0 +1,9 @@
+{
+  "checkpoint": "/home/jingxuan/Documents/Codex/2026-10-16/ni/outputs/sonic-token-policy/runs/reach-v2/policy.pt",
+  "report": "/home/jingxuan/Documents/Codex/2026-10-16/ni/outputs/sonic-token-policy/runs/reach-v2/report.json",
+  "checkpoint_sha256": "bdffaa1c6b951a7f566cc3d92d7f6bdef0f0d2da790ee56ae3447ab545e2ac60",
+  "target": "local MuJoCo simulation only",
+  "hardware_approved": false,
+  "mean_error_cm": 0.7449590879492018,
+  "best_update": 70
+}

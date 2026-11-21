@@ -12,6 +12,10 @@ if (a.run/'online_ik.json').exists():
  report['online_ik']=json.loads((a.run/'online_ik.json').read_text())
 report['sim_arm_extra_kp']=config.get('sim_arm_extra_kp',0)
 report['sim_arm_extra_kd']=config.get('sim_arm_extra_kd',0)
+report['control_input']='recorded_external_tokens' if config.get('token_replay') else 'planner_targets'
+if (a.run/'token_replay_result.json').exists():
+ report['token_replay']=json.loads((a.run/'token_replay_result.json').read_text())
+ report['token_replay']['limitation']='Interface replay only; no learned ball-to-token policy and no physical robot validation.'
 if not reach and config.get('absolute_right_target_m') is not None:
  report['requested_displacement_m']=None
 if config.get('initial_right_q_rad') is not None:
@@ -49,6 +53,16 @@ if reach:
  if all('right_arm_contacts' in r for r in reach):
   report['right_arm_contact_fraction']=float(np.mean([bool(r['right_arm_contacts']) for r in reach]))
   report['max_right_arm_contact_penetration_mm']=float(max([max(0.,-contact[2]*1000) for r in reach for contact in r['right_arm_contacts']] or [0.]))
+  # The stock simulator has Dex3 fingers, whereas the physical robot has a
+  # two-finger gripper. Keep the raw statistic, but show which contact model
+  # produced it so it is not mistaken for a measured racket collision.
+  pairs=sorted({tuple(contact[:2]) for r in reach for contact in r['right_arm_contacts']})
+  report['right_arm_contact_pairs']=[list(pair) for pair in pairs]
+  non_dex3=[[contact for contact in r['right_arm_contacts']
+             if not any('hand_' in body for body in contact[:2])] for r in reach]
+  report['right_arm_non_dex3_contact_fraction']=float(np.mean([bool(contacts) for contacts in non_dex3]))
+  report['max_right_arm_non_dex3_contact_penetration_mm']=float(max(
+   [max(0.,-contact[2]*1000) for contacts in non_dex3 for contact in contacts] or [0.]))
  if all('right_joint_motor_torque_nm' in r and 'right_joint_torque_limit_nm' in r for r in reach):
   report['max_right_arm_torque_limit_fraction']=float(max(np.max(np.abs(np.asarray(r['right_joint_motor_torque_nm']))/np.asarray(r['right_joint_torque_limit_nm'])) for r in reach))
  if all('reach_joint_correction_rad' in r for r in reach):

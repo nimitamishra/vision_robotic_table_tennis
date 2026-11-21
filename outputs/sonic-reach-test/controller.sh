@@ -9,6 +9,9 @@ set +u
 source scripts/setup_env.sh >/dev/null
 # Simulation only: fixed loopback interface, private input/output ports.
 extra=()
+if [[ -n "${SONIC_SIM_RECORD_INPUT:-}" ]]; then
+  extra+=(--policy-input-logfile "$SONIC_SIM_RECORD_INPUT")
+fi
 if [[ "${SONIC_SIM_HOLD_INIT_UPPER_BODY:-0}" == "1" ]]; then
   extra+=(--sim-init-hold-upper-body)
 fi

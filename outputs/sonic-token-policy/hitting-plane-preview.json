@@ -1,0 +1,7 @@
+{
+  "run": "/home/jingxuan/Documents/Codex/2026-10-16/ni/outputs/sonic-token-policy/hitting_plane/runs/bracket-v4",
+  "model_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+  "simulation_only": true,
+  "hardware_approved": false,
+  "viewer": "hitting_plane/serve.py"
+}

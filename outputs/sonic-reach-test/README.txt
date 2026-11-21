@@ -91,3 +91,25 @@ The concise aggregate is runs/ready-edge-outward-validation.json.
 Use table_contact_audit.py /absolute/path/to/a/completed/run to replay a run
 against the saved tabletop and net. This offline audit uses a saved pose, and
 the racket is not yet installed or modeled.
+
+DIRECT LATENT INTERFACE EXPERIMENT (SIMULATION ONLY)
+The existing ball-proxy-02 policy outputs three normalized right-hand position
+offsets. It does NOT output a SONIC latent. The configured SONIC decoder takes
+64 latent values plus robot-state history. In the target-based route the SONIC
+encoder creates those latents internally; the external-token route supplies
+them directly through the pose topic (protocol v4, token_state [1,64]).
+
+--record-token-state records encoder output to tokens.jsonl during the ordinary
+loopback simulation. --token-replay /absolute/path/to/tokens.jsonl switches from
+planner to streamed tokens at the start of the reach. Match the source delta,
+ramp time and hold time. These options cannot select a physical NIC, cannot
+combine replay with direct-arm servo, and do not train a new policy. The
+replay result records whether SONIC acknowledged external tokens and whether
+the controller's actual consumed tokens matched recently transmitted values.
+
+A future ball-to-token policy needs training with the frozen SONIC decoder
+inside the simulation loop. The 64 coordinates are not separate arm/leg
+controls. Upper-body-only behavior needs explicit lower-body/torso constraints
+and validation, plus the installed racket/gripper dynamics and collision model.
+The current external-token receiver warns on missing tokens and may retain the
+last token; it is not a validated fail-stop path for physical experiments.

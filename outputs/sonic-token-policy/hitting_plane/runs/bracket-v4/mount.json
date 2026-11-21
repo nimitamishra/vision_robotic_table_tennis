@@ -1,0 +1,31 @@
+{
+  "mount": "direct wrist bracket",
+  "dex3_removed": true,
+  "wrist_to_blade_center_m": [
+    0.2365,
+    0,
+    0
+  ],
+  "contact_offset_m": [
+    0.2365,
+    0.0062,
+    0
+  ],
+  "face_normal_wrist": [
+    0,
+    1,
+    0
+  ],
+  "blade_mass_kg": 0.14,
+  "handle_mass_kg": 0.025,
+  "bracket_mass_kg": 0.035,
+  "attachment_dynamics_measured": false,
+  "hardware_approved": false,
+  "geometry_source": "https://github.com/dvij542/table-tennis-motion-kit",
+  "source_commit": "c6c4c061f8fcb24714fbe118a31e66c69adeb4bf",
+  "bare_wrist_inertia_source": "/home/jingxuan/Documents/Codex/2026-09-15/nih/work/GR00T-WholeBodyControl/decoupled_wbc/control/robot_model/model_data/g1/g1_29dof.urdf",
+  "bare_wrist_inertia_sha256": "56d0c7b4e44351ee8e89e7b1f1fcc8b02d5ec5cd191e43239d2b06f039e75860",
+  "left_terminal": "bare wrist; no ball holder in this experiment",
+  "collision_geometry": "blade cylinder, handle capsule, bracket box; approximations",
+  "physics": "MuJoCo contact; no drag or spin model; contact parameters provisional"
+}

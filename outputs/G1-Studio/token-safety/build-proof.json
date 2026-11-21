@@ -1,0 +1,16 @@
+{
+  "built_at_unix": 1795213172.873622,
+  "binary_sha256": "7144aa029ebe32a451a074320064e8c880dcf868a90d0d0d3752bc6656b08afc",
+  "source_sha256": {
+    "src/g1/g1_deploy_onnx_ref/include/external_token_guard.hpp": "a9c132bf1728be748212a70a2ff34144c7182417f4bc344ebba3793d3e8589de",
+    "src/g1/g1_deploy_onnx_ref/src/g1_deploy_onnx_ref.cpp": "298ff27514e066e3fc864e0555d3d32cfabe4148150e876d05bfbb6a86a9e748",
+    "src/g1/g1_deploy_onnx_ref/include/trial_envelope.hpp": "cfb4eea6d7326f0a663ea98e683ac242c3a788c3f62c7dc48abc0b73de06426a"
+  },
+  "offline_guard_tests_passed": true,
+  "physical_fault_injection_tested": false,
+  "external_token_loopback_passed": false,
+  "physical_trial_validated": false,
+  "preparation_loopback_passed": true,
+  "preparation_ui_routing_test_passed": true,
+  "external_token_regression_note": "Previous binary passed external token loopback. Current rebuild adds only the separate opt-in preparation path; full external token loopback has not been rerun."
+}

@@ -15,6 +15,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'rl-interception'))
 from fixed_arm_env import ARM, OFFSET, build_model
 
 
+def rotate_for_waist_yaw(point_zero_waist, waist_yaw):
+    """Map a zero-waist pelvis-frame point into the live yawed pelvis frame."""
+    c, s = np.cos(waist_yaw), np.sin(waist_yaw)
+    rotation = np.array([[c, -s, 0], [s, c, 0], [0, 0, 1]])
+    return rotation @ np.asarray(point_zero_waist, dtype=float)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--pose', default='tcp://127.0.0.1:5565')
@@ -41,7 +48,9 @@ def main():
     transform = np.asarray(packet.get('T_world_pelvis'), dtype=float)
     current_q = np.asarray(packet.get('right_arm_q_rad'), dtype=float)
     measured_hand = np.asarray(packet.get('right_hand_pelvis_m'), dtype=float)
+    waist_yaw = packet.get('waist_yaw_rad')
     if (transform.shape != (4, 4) or current_q.shape != (7,) or measured_hand.shape != (3,)
+            or not isinstance(waist_yaw, (int, float)) or not np.isfinite(waist_yaw)
             or not all(np.all(np.isfinite(x)) for x in (transform, current_q, measured_hand))
             or not np.allclose(transform[:3, :3].T @ transform[:3, :3], np.eye(3), atol=.02)):
         raise SystemExit('Invalid pose packet.')
@@ -52,11 +61,15 @@ def main():
     pelvis_id = model.body('pelvis').id
     limits = np.asarray([model.jnt_range[model.joint(name + '_joint').id] for name in ARM])
     lower, upper = limits[:, 0] + .02, limits[:, 1] - .02
-
     def point(q):
         data.qpos[:] = q
         mujoco.mj_forward(model, data)
-        return data.xpos[wrist_id] + data.xmat[wrist_id].reshape(3, 3) @ OFFSET - data.xpos[pelvis_id]
+        # The seven-joint IK model fixes waist yaw at zero; the live hand point
+        # is expressed in the pelvis frame after the measured waist rotation.
+        zero_waist_point = (data.xpos[wrist_id]
+                            + data.xmat[wrist_id].reshape(3, 3) @ OFFSET
+                            - data.xpos[pelvis_id])
+        return rotate_for_waist_yaw(zero_waist_point, waist_yaw)
 
     model_hand = point(current_q)
     model_gap = float(np.linalg.norm(model_hand - measured_hand))
@@ -81,6 +94,7 @@ def main():
         'simulation_only': True,
         'read_only': True,
         'frame_id': packet.get('frame_id'),
+        'waist_yaw_rad': waist_yaw,
         'capture_monotonic_ns': packet.get('capture_monotonic_ns'),
         'snapshot_unix_time': time.time(),
         'target_world_m': target_world.tolist(),
@@ -88,6 +102,9 @@ def main():
         'current_hand_local_m': measured_hand.tolist(),
         'model_hand_local_m': model_hand.tolist(),
         'model_vs_observation_cm': model_gap * 100,
+        'observation_basis': ('Live joint angles transformed by the Viser URDF; '
+                              'this comparison checks coordinate conventions, '
+                              'not independent optical hand localization.'),
         'target_hand_local_m': target_local.tolist(),
         'required_hand_displacement_cm': float(np.linalg.norm(target_local - measured_hand) * 100),
         'current_right_q_rad': current_q.tolist(),

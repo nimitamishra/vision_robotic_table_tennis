@@ -1,0 +1,2272 @@
+{
+  "simulation_only": true,
+  "mount": {
+    "mount": "direct wrist bracket",
+    "dex3_removed": true,
+    "wrist_to_blade_center_m": [
+      0.2365,
+      0,
+      0
+    ],
+    "contact_offset_m": [
+      0.2365,
+      0.0062,
+      0
+    ],
+    "face_normal_wrist": [
+      0,
+      1,
+      0
+    ],
+    "blade_mass_kg": 0.14,
+    "handle_mass_kg": 0.025,
+    "bracket_mass_kg": 0.035,
+    "attachment_dynamics_measured": false,
+    "hardware_approved": false,
+    "geometry_source": "https://github.com/dvij542/table-tennis-motion-kit",
+    "source_commit": "c6c4c061f8fcb24714fbe118a31e66c69adeb4bf",
+    "bare_wrist_inertia_source": "/home/jingxuan/Documents/Codex/2026-09-15/nih/work/GR00T-WholeBodyControl/decoupled_wbc/control/robot_model/model_data/g1/g1_29dof.urdf",
+    "bare_wrist_inertia_sha256": "56d0c7b4e44351ee8e89e7b1f1fcc8b02d5ec5cd191e43239d2b06f039e75860",
+    "left_terminal": "bare wrist; no ball holder in this experiment",
+    "collision_geometry": "blade cylinder, handle capsule, bracket box; approximations",
+    "physics": "MuJoCo contact; no drag or spin model; contact parameters provisional"
+  },
+  "groups": {
+    "training_replay": {
+      "summary": {
+        "episodes": 1,
+        "completed": 1,
+        "face_contacts": 1,
+        "net_crossings": 1,
+        "legal_returns": 1,
+        "posture_failures": 0,
+        "racket_obstacle_failures": 0,
+        "mean_deadline_error_cm": 4.444722979817708
+      },
+      "trials": [
+        {
+          "outgoing": {
+            "position": [
+              0.5530042644698605,
+              -0.36536189508991807,
+              1.024671490697501
+            ],
+            "velocity": [
+              3.009409814709156,
+              0.4096680537847654,
+              1.9600159324612296
+            ]
+          },
+          "landing_m": [
+            2.0576261245173537,
+            -0.1605278681975321,
+            0.776807429998869
+          ],
+          "net_position_m": [
+            1.73,
+            -0.20513860149565022,
+            1.0390402628616864
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.38,
+            0.178
+          ],
+          "target_world_m": [
+            0.43,
+            -0.38,
+            0.959987965106964
+          ],
+          "deadline_s": 1.0,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.444722979817708,
+          "face_normal_at_deadline": [
+            0.985358655981104,
+            0.06809904921246918,
+            0.15630367423535244
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9930000000000008,
+          "hit_time_error_ms": -6.999999999999229,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.347088209669502,
+          "peak_leg_change_rad": 0.20307490658548766,
+          "minimum_ball_face_distance_cm": 5.048247682339619,
+          "completed": true,
+          "actual_launch_time_s": 0.34000000000000025,
+          "planned_launch_time_s": 0.33963780632427953
+        }
+      ]
+    },
+    "held_out_nearby": {
+      "summary": {
+        "episodes": 6,
+        "completed": 6,
+        "face_contacts": 6,
+        "net_crossings": 4,
+        "legal_returns": 4,
+        "posture_failures": 0,
+        "racket_obstacle_failures": 0,
+        "mean_deadline_error_cm": 4.417194297511794
+      },
+      "trials": [
+        {
+          "outgoing": {
+            "position": [
+              0.5414403951312293,
+              -0.37610556428533315,
+              1.0163747537706462
+            ],
+            "velocity": [
+              2.7154616808938146,
+              0.39379711481647095,
+              1.9087344239815058
+            ]
+          },
+          "landing_m": [
+            1.58057719240705,
+            -0.1545967219017578,
+            0.7779420763729907
+          ],
+          "net_position_m": null,
+          "target_pelvis_m": [
+            0.43,
+            -0.39,
+            0.173
+          ],
+          "target_world_m": [
+            0.43,
+            -0.39,
+            0.9549879651069642
+          ],
+          "deadline_s": 1.0,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.305860456540753,
+          "face_normal_at_deadline": [
+            0.9859419189751149,
+            0.0654942497432296,
+            0.15371738892605308
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9930000000000008,
+          "hit_time_error_ms": -6.999999999999229,
+          "net_crossed": false,
+          "opponent_landing": false,
+          "legal_return": false,
+          "own_bounces": 1,
+          "failure": "net_contact",
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.472878491145087,
+          "peak_leg_change_rad": 0.19776380462136608,
+          "minimum_ball_face_distance_cm": 4.981971622537364,
+          "completed": true,
+          "actual_launch_time_s": 0.34100000000000025,
+          "planned_launch_time_s": 0.34009869183176566
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5473197892482061,
+              -0.3543675244198567,
+              1.0265683181249148
+            ],
+            "velocity": [
+              2.8075802217781365,
+              0.4395841450679551,
+              1.9370663961184222
+            ]
+          },
+          "landing_m": [
+            1.9425772841970825,
+            -0.1358942043210853,
+            0.7763721397445729
+          ],
+          "net_position_m": [
+            1.73,
+            -0.16919473209877398,
+            0.9701006387386777
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.37,
+            0.183
+          ],
+          "target_world_m": [
+            0.43,
+            -0.37,
+            0.9649879651069642
+          ],
+          "deadline_s": 1.0,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.56909578043391,
+          "face_normal_at_deadline": [
+            0.9854644537102075,
+            0.07869031165689377,
+            0.15055778068563597
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9920000000000008,
+          "hit_time_error_ms": -7.99999999999923,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.285027287147161,
+          "peak_leg_change_rad": 0.2098031133555269,
+          "minimum_ball_face_distance_cm": 5.0971323406515285,
+          "completed": true,
+          "actual_launch_time_s": 0.34000000000000025,
+          "planned_launch_time_s": 0.3394635148261429
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5440144954366899,
+              -0.37022587531154166,
+              1.0312078076321176
+            ],
+            "velocity": [
+              2.6844102388197597,
+              0.4159027966090736,
+              1.9397600727573423
+            ]
+          },
+          "landing_m": [
+            1.9817898270518246,
+            -0.14646628274329113,
+            0.7779855339723555
+          ],
+          "net_position_m": [
+            1.73,
+            -0.18647344011487077,
+            0.9288116674235177
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.385,
+            0.188
+          ],
+          "target_world_m": [
+            0.43,
+            -0.385,
+            0.9699879651069641
+          ],
+          "deadline_s": 0.96,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.30685188572527,
+          "face_normal_at_deadline": [
+            0.9829922656109026,
+            0.07544208829766474,
+            0.16743565051215883
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9510000000000007,
+          "hit_time_error_ms": -8.99999999999923,
+          "net_crossed": false,
+          "opponent_landing": false,
+          "legal_return": false,
+          "own_bounces": 1,
+          "failure": "net_contact",
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.568971323670952,
+          "peak_leg_change_rad": 0.20242432293642118,
+          "minimum_ball_face_distance_cm": 5.036188836842456,
+          "completed": true,
+          "actual_launch_time_s": 0.2990000000000002,
+          "planned_launch_time_s": 0.2988580502033845
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5406604087570817,
+              -0.36126939244419026,
+              1.0167228078376223
+            ],
+            "velocity": [
+              2.691570463260114,
+              0.38690334076384775,
+              2.0936333336957347
+            ]
+          },
+          "landing_m": [
+            1.9402182024588173,
+            -0.16007965524698536,
+            0.77713801329482
+          ],
+          "net_position_m": [
+            1.73,
+            -0.19030620666259296,
+            0.9819590327535598
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.375,
+            0.168
+          ],
+          "target_world_m": [
+            0.43,
+            -0.375,
+            0.9499879651069641
+          ],
+          "deadline_s": 0.94,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.461142988413925,
+          "face_normal_at_deadline": [
+            0.9874562242958206,
+            0.06760844110027914,
+            0.1426860322226171
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9330000000000007,
+          "hit_time_error_ms": -6.999999999999229,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.2184073216782485,
+          "peak_leg_change_rad": 0.20510225151045186,
+          "minimum_ball_face_distance_cm": 5.017617639356783,
+          "completed": true,
+          "actual_launch_time_s": 0.2820000000000002,
+          "planned_launch_time_s": 0.2814147833759554
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5460094303107785,
+              -0.3859885911108203,
+              1.0215795515189383
+            ],
+            "velocity": [
+              2.777537867287644,
+              0.3937320623536963,
+              1.9236441322801454
+            ]
+          },
+          "landing_m": [
+            1.9152284770882682,
+            -0.19187868437044375,
+            0.7764338166861543
+          ],
+          "net_position_m": [
+            1.73,
+            -0.21815107778600046,
+            0.9482032806972899
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.4,
+            0.178
+          ],
+          "target_world_m": [
+            0.43,
+            -0.4,
+            0.959987965106964
+          ],
+          "deadline_s": 0.98,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.140958295280588,
+          "face_normal_at_deadline": [
+            0.9855470999504197,
+            0.0686612604963448,
+            0.1548629881100406
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9720000000000008,
+          "hit_time_error_ms": -7.99999999999923,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.76436872262605,
+          "peak_leg_change_rad": 0.19663595851308083,
+          "minimum_ball_face_distance_cm": 4.9397348623480175,
+          "completed": true,
+          "actual_launch_time_s": 0.32000000000000023,
+          "planned_launch_time_s": 0.3196378063242795
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5514221881235434,
+              -0.3430051062592031,
+              1.016466531143766
+            ],
+            "velocity": [
+              2.941391889950923,
+              0.48429853855679567,
+              1.8345274509485265
+            ]
+          },
+          "landing_m": [
+            1.951440204483382,
+            -0.11247900190616458,
+            0.7768567703635476
+          ],
+          "net_position_m": [
+            1.73,
+            -0.14895292510738872,
+            0.9620730762639483
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.36,
+            0.178
+          ],
+          "target_world_m": [
+            0.43,
+            -0.36,
+            0.959987965106964
+          ],
+          "deadline_s": 0.92,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.719256378676319,
+          "face_normal_at_deadline": [
+            0.9875824219648744,
+            0.08556108162766357,
+            0.13175834370808207
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9110000000000007,
+          "hit_time_error_ms": -8.999999999999343,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.313052531536438,
+          "peak_leg_change_rad": 0.2153036370731848,
+          "minimum_ball_face_distance_cm": 5.143148524991805,
+          "completed": true,
+          "actual_launch_time_s": 0.2600000000000002,
+          "planned_launch_time_s": 0.2596378063242796
+        }
+      ]
+    },
+    "wider_targets": {
+      "summary": {
+        "episodes": 5,
+        "completed": 5,
+        "face_contacts": 5,
+        "net_crossings": 3,
+        "legal_returns": 3,
+        "posture_failures": 0,
+        "racket_obstacle_failures": 0,
+        "mean_deadline_error_cm": 5.035333403410364
+      },
+      "trials": [
+        {
+          "outgoing": {
+            "position": [
+              0.5268396497550384,
+              -0.4767802655653897,
+              0.9770095931265711
+            ],
+            "velocity": [
+              2.984403494302605,
+              0.09140842982082367,
+              1.5256971602043328
+            ]
+          },
+          "landing_m": [
+            1.7160005690255573,
+            -0.43877119503977147,
+            0.7781941609215283
+          ],
+          "net_position_m": null,
+          "target_pelvis_m": [
+            0.43,
+            -0.48,
+            0.128
+          ],
+          "target_world_m": [
+            0.43,
+            -0.48,
+            0.9099879651069641
+          ],
+          "deadline_s": 1.0,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 5.029865881105259,
+          "face_normal_at_deadline": [
+            0.9998577854832087,
+            -0.004719648772327556,
+            0.016190544279926666
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 1.0030000000000003,
+          "hit_time_error_ms": 3.0000000000003357,
+          "net_crossed": false,
+          "opponent_landing": false,
+          "legal_return": false,
+          "own_bounces": 1,
+          "failure": "net_contact",
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.487906416150312,
+          "peak_leg_change_rad": 0.16737535429520925,
+          "minimum_ball_face_distance_cm": 5.015643897628634,
+          "completed": true,
+          "actual_launch_time_s": 0.34400000000000025,
+          "planned_launch_time_s": 0.3439353197254835
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5579837711380613,
+              -0.41681889312357784,
+              1.0192383853517084
+            ],
+            "velocity": [
+              3.210126398894421,
+              0.3690282216706774,
+              1.7620866537606372
+            ]
+          },
+          "landing_m": [
+            2.050596578155615,
+            -0.24522077004671383,
+            0.7767039140338455
+          ],
+          "net_position_m": [
+            1.73,
+            -0.28208679508063084,
+            1.0069587502825421
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.43,
+            0.178
+          ],
+          "target_world_m": [
+            0.43,
+            -0.43,
+            0.959987965106964
+          ],
+          "deadline_s": 1.0,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.121583228455229,
+          "face_normal_at_deadline": [
+            0.9915960331689406,
+            0.0575921071844937,
+            0.11584669263155375
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9940000000000008,
+          "hit_time_error_ms": -5.999999999999228,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 8.00875931206484,
+          "peak_leg_change_rad": 0.1911032822394405,
+          "minimum_ball_face_distance_cm": 4.778669529836971,
+          "completed": true,
+          "actual_launch_time_s": 0.34000000000000025,
+          "planned_launch_time_s": 0.33963780632427953
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5532498815381882,
+              -0.3082734562845634,
+              1.066333719483431
+            ],
+            "velocity": [
+              2.689974677856561,
+              0.6180252096926013,
+              2.0539869028201556
+            ]
+          },
+          "landing_m": [
+            1.9788076832907255,
+            0.019275743900739543,
+            0.7758620126104125
+          ],
+          "net_position_m": [
+            1.73,
+            -0.037913573455611485,
+            1.0240530539322272
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.33,
+            0.228
+          ],
+          "target_world_m": [
+            0.43,
+            -0.33,
+            1.009987965106964
+          ],
+          "deadline_s": 1.0,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 5.15750130470674,
+          "face_normal_at_deadline": [
+            0.9769048106060122,
+            0.12399776970480203,
+            0.17401593065884963
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9860000000000008,
+          "hit_time_error_ms": -13.999999999999236,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 8.019724953780237,
+          "peak_leg_change_rad": 0.2220891016637065,
+          "minimum_ball_face_distance_cm": 5.56603942208904,
+          "completed": true,
+          "actual_launch_time_s": 0.33700000000000024,
+          "planned_launch_time_s": 0.3368771803977093
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5144157692874518,
+              -0.37850696843640175,
+              0.9471334324923687
+            ],
+            "velocity": [
+              2.627150165782524,
+              0.04745614040593095,
+              1.8906881101708852
+            ]
+          },
+          "landing_m": [
+            1.7159011071544603,
+            -0.35631673231952155,
+            0.7768015260100342
+          ],
+          "net_position_m": null,
+          "target_pelvis_m": [
+            0.43,
+            -0.38,
+            0.078
+          ],
+          "target_world_m": [
+            0.43,
+            -0.38,
+            0.8599879651069641
+          ],
+          "deadline_s": 1.0,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 6.614857880230381,
+          "face_normal_at_deadline": [
+            0.9989600763439805,
+            0.013795138364388948,
+            0.043456415272522
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 1.006,
+          "hit_time_error_ms": 6.000000000000005,
+          "net_crossed": false,
+          "opponent_landing": false,
+          "legal_return": false,
+          "own_bounces": 1,
+          "failure": "ball_obstacle",
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 5.910650879332078,
+          "peak_leg_change_rad": 0.17246039928447363,
+          "minimum_ball_face_distance_cm": 6.277526825587477,
+          "completed": true,
+          "actual_launch_time_s": 0.34800000000000025,
+          "planned_launch_time_s": 0.3474775246639734
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5561030045294448,
+              -0.36435661823350224,
+              1.0235899858881847
+            ],
+            "velocity": [
+              3.0325312902807253,
+              0.43756749071892287,
+              1.9756171244155625
+            ]
+          },
+          "landing_m": [
+            2.0783828293366113,
+            -0.1446977378926023,
+            0.7773166814826036
+          ],
+          "net_position_m": [
+            1.73,
+            -0.1949736462203812,
+            1.0514530717595538
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.38,
+            0.178
+          ],
+          "target_world_m": [
+            0.43,
+            -0.38,
+            0.959987965106964
+          ],
+          "deadline_s": 0.8,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.252858722554212,
+          "face_normal_at_deadline": [
+            0.9849070610249463,
+            0.07403371927010605,
+            0.15645155657340168
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.7920000000000006,
+          "hit_time_error_ms": -7.999999999999452,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.456173940608289,
+          "peak_leg_change_rad": 0.2038165007972331,
+          "minimum_ball_face_distance_cm": 4.854435112257709,
+          "completed": true,
+          "actual_launch_time_s": 0.1400000000000001,
+          "planned_launch_time_s": 0.13963780632427958
+        }
+      ]
+    },
+    "fresh_test": {
+      "summary": {
+        "episodes": 20,
+        "completed": 20,
+        "face_contacts": 20,
+        "net_crossings": 17,
+        "legal_returns": 17,
+        "posture_failures": 0,
+        "racket_obstacle_failures": 0,
+        "mean_deadline_error_cm": 4.267710852043969
+      },
+      "trials": [
+        {
+          "outgoing": {
+            "position": [
+              0.5602789976955087,
+              -0.3377291471580385,
+              1.0292487281697142
+            ],
+            "velocity": [
+              3.082622487238687,
+              0.5205008341817993,
+              1.813170983681135
+            ]
+          },
+          "landing_m": [
+            2.030596606211146,
+            -0.0894502492533208,
+            0.7766950363577119
+          ],
+          "net_position_m": [
+            1.73,
+            -0.14022174559332734,
+            1.0091484882558555
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.3562884118862031,
+            0.19056628835426997
+          ],
+          "target_world_m": [
+            0.43,
+            -0.3562884118862031,
+            0.9725542534612341
+          ],
+          "deadline_s": 0.9023813012461142,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.94277259612809,
+          "face_normal_at_deadline": [
+            0.9850696401292929,
+            0.10962607826218418,
+            0.1327400733026726
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.8930000000000007,
+          "hit_time_error_ms": -9.381301246113471,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.435201773588711,
+          "peak_leg_change_rad": 0.21812222392613445,
+          "minimum_ball_face_distance_cm": 5.177461594425827,
+          "completed": true,
+          "actual_launch_time_s": 0.2410000000000002,
+          "planned_launch_time_s": 0.24064759701667082
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5458912780481178,
+              -0.3587420404996577,
+              1.0388346968784914
+            ],
+            "velocity": [
+              2.7410402705652963,
+              0.4514557419000221,
+              1.9338207038586503
+            ]
+          },
+          "landing_m": [
+            1.9190069421897136,
+            -0.13257272984018473,
+            0.7756168339520223
+          ],
+          "net_position_m": [
+            1.73,
+            -0.16371656520853917,
+            0.9567529401490393
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.37463368905920913,
+            0.1968000161970774
+          ],
+          "target_world_m": [
+            0.43,
+            -0.37463368905920913,
+            0.9787879813040415
+          ],
+          "deadline_s": 0.9597465671581741,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.46932000982086,
+          "face_normal_at_deadline": [
+            0.9818581473374355,
+            0.08062784710057708,
+            0.17162088677963339
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9500000000000007,
+          "hit_time_error_ms": -9.746567158173347,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.469715590821961,
+          "peak_leg_change_rad": 0.2080088137953862,
+          "minimum_ball_face_distance_cm": 5.110938457993996,
+          "completed": true,
+          "actual_launch_time_s": 0.2980000000000002,
+          "planned_launch_time_s": 0.2979745542239174
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5534847373146603,
+              -0.3960659823189331,
+              1.0163812690875274
+            ],
+            "velocity": [
+              3.073215449100334,
+              0.3860680792141079,
+              2.102544243863375
+            ]
+          },
+          "landing_m": [
+            2.1575774024812455,
+            -0.1945384449691745,
+            0.7760729270224979
+          ],
+          "net_position_m": [
+            1.73,
+            -0.24826801788921601,
+            1.1005509012105303
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.40987378950424547,
+            0.16487127566987733
+          ],
+          "target_world_m": [
+            0.43,
+            -0.40987378950424547,
+            0.9468592407768415
+          ],
+          "deadline_s": 0.9531463034755336,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 3.835140014748608,
+          "face_normal_at_deadline": [
+            0.9890109779801599,
+            0.06775450358427793,
+            0.13140248353352238
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9470000000000007,
+          "hit_time_error_ms": -6.1463034755329105,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.785405628000065,
+          "peak_leg_change_rad": 0.1911952792999162,
+          "minimum_ball_face_distance_cm": 4.878365831023532,
+          "completed": true,
+          "actual_launch_time_s": 0.2950000000000002,
+          "planned_launch_time_s": 0.29472319209674225
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5503669600096452,
+              -0.3443442126779668,
+              1.0155197636897444
+            ],
+            "velocity": [
+              2.902010815120043,
+              0.45181366177308757,
+              2.1233799945932392
+            ]
+          },
+          "landing_m": [
+            2.0738341979053643,
+            -0.10714204024709548,
+            0.7766629112744888
+          ],
+          "net_position_m": [
+            1.73,
+            -0.16068730810350584,
+            1.0661875166619423
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.36042863378152673,
+            0.16766430570065158
+          ],
+          "target_world_m": [
+            0.43,
+            -0.36042863378152673,
+            0.9496522708076157
+          ],
+          "deadline_s": 0.922830370984048,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.473405112921369,
+          "face_normal_at_deadline": [
+            0.9888464251065572,
+            0.09370089519433589,
+            0.11577085036295268
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9150000000000007,
+          "hit_time_error_ms": -7.8303709840472635,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.208958352461227,
+          "peak_leg_change_rad": 0.21339912654011617,
+          "minimum_ball_face_distance_cm": 5.146547478778229,
+          "completed": true,
+          "actual_launch_time_s": 0.2650000000000002,
+          "planned_launch_time_s": 0.2645312960517754
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5443706622420786,
+              -0.367782841150048,
+              1.0318323458026828
+            ],
+            "velocity": [
+              2.6934137769579523,
+              0.4223538739832791,
+              1.9235908926759273
+            ]
+          },
+          "landing_m": [
+            1.996873390563238,
+            -0.13728759757618994,
+            0.7777131624555889
+          ],
+          "net_position_m": [
+            1.73,
+            -0.18182927855616088,
+            0.9268754587694646
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.3827625858701212,
+            0.1893257163491305
+          ],
+          "target_world_m": [
+            0.43,
+            -0.3827625858701212,
+            0.9713136814560946
+          ],
+          "deadline_s": 0.9421789905133087,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.257379883602576,
+          "face_normal_at_deadline": [
+            0.9834354542531585,
+            0.09356300557655867,
+            0.15524390907653365
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9330000000000007,
+          "hit_time_error_ms": -9.17899051330795,
+          "net_crossed": false,
+          "opponent_landing": false,
+          "legal_return": false,
+          "own_bounces": 1,
+          "failure": "net_contact",
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.537875868282343,
+          "peak_leg_change_rad": 0.20341676204123538,
+          "minimum_ball_face_distance_cm": 5.0366585239589865,
+          "completed": true,
+          "actual_launch_time_s": 0.2810000000000002,
+          "planned_launch_time_s": 0.28088502263866777
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5471265501348431,
+              -0.3837597009732386,
+              1.0285601206636763
+            ],
+            "velocity": [
+              2.7678601049484746,
+              0.40556939834942185,
+              2.070256232370566
+            ]
+          },
+          "landing_m": [
+            1.9863430685796175,
+            -0.17286361383154344,
+            0.7769381227809582
+          ],
+          "net_position_m": [
+            1.73,
+            -0.21043545220517249,
+            1.0153745384324713
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.39820484723013627,
+            0.18191093429943977
+          ],
+          "target_world_m": [
+            0.43,
+            -0.39820484723013627,
+            0.9638988994064039
+          ],
+          "deadline_s": 0.9506479541448705,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 3.8984422722436687,
+          "face_normal_at_deadline": [
+            0.9850291328062569,
+            0.08038545777842221,
+            0.15249847769964792
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9420000000000007,
+          "hit_time_error_ms": -8.64795414486974,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.768614356727777,
+          "peak_leg_change_rad": 0.19747608749838816,
+          "minimum_ball_face_distance_cm": 4.969371591442194,
+          "completed": true,
+          "actual_launch_time_s": 0.2910000000000002,
+          "planned_launch_time_s": 0.290691235259666
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5408158304646704,
+              -0.35817482136294926,
+              1.0145316222957428
+            ],
+            "velocity": [
+              2.6901378531352096,
+              0.4058785659104425,
+              2.1861635748882526
+            ]
+          },
+          "landing_m": [
+            1.9825936004803313,
+            -0.14062391003494495,
+            0.775860531083967
+          ],
+          "net_position_m": [
+            1.73,
+            -0.17875488391554423,
+            1.0202724993040988
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.3725445196542073,
+            0.16420098296358746
+          ],
+          "target_world_m": [
+            0.43,
+            -0.3725445196542073,
+            0.9461889480705515
+          ],
+          "deadline_s": 0.9003558677808204,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.131821905219731,
+          "face_normal_at_deadline": [
+            0.9884701261889339,
+            0.08531385717439877,
+            0.12509338673991027
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.8930000000000007,
+          "hit_time_error_ms": -7.355867780819758,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.17819611043079,
+          "peak_leg_change_rad": 0.20628747905006298,
+          "minimum_ball_face_distance_cm": 4.998605637640317,
+          "completed": true,
+          "actual_launch_time_s": 0.2430000000000002,
+          "planned_launch_time_s": 0.24250422675560568
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5559730250323515,
+              -0.34034383262914264,
+              1.025131795841095
+            ],
+            "velocity": [
+              3.0066953075355163,
+              0.49280683374701406,
+              1.8286895146316575
+            ]
+          },
+          "landing_m": [
+            1.9930962317280243,
+            -0.10478216609807078,
+            0.7769582768983564
+          ],
+          "net_position_m": [
+            1.73,
+            -0.1479171125629803,
+            0.9894121825025501
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.35789176651403143,
+            0.1855609421744311
+          ],
+          "target_world_m": [
+            0.43,
+            -0.35789176651403143,
+            0.9675489072813952
+          ],
+          "deadline_s": 0.9511047230759372,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.705444405464367,
+          "face_normal_at_deadline": [
+            0.9864436292717442,
+            0.09663400156218693,
+            0.13263044903517282
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9420000000000007,
+          "hit_time_error_ms": -9.10472307593646,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.362502908369583,
+          "peak_leg_change_rad": 0.21651279627520106,
+          "minimum_ball_face_distance_cm": 5.221375367132862,
+          "completed": true,
+          "actual_launch_time_s": 0.2900000000000002,
+          "planned_launch_time_s": 0.2899777389085999
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5420043726452933,
+              -0.395981877107519,
+              1.0183388415556203
+            ],
+            "velocity": [
+              2.7376868336815696,
+              0.38823818636530055,
+              2.1554649048126544
+            ]
+          },
+          "landing_m": [
+            1.9983082958773295,
+            -0.18944154522558934,
+            0.775682546425302
+          ],
+          "net_position_m": [
+            1.73,
+            -0.22750925923914866,
+            1.0279188648909803
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.4096126456176271,
+            0.16985108283232672
+          ],
+          "target_world_m": [
+            0.43,
+            -0.4096126456176271,
+            0.9518390479392909
+          ],
+          "deadline_s": 0.9483450682980444,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 3.7241185039729165,
+          "face_normal_at_deadline": [
+            0.9882788520302767,
+            0.07490563140635864,
+            0.13301900996976035
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9410000000000007,
+          "hit_time_error_ms": -7.345068298043711,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.836750119424636,
+          "peak_leg_change_rad": 0.1927778511345646,
+          "minimum_ball_face_distance_cm": 4.896021482006107,
+          "completed": true,
+          "actual_launch_time_s": 0.2910000000000002,
+          "planned_launch_time_s": 0.2900317660502132
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5433083176290677,
+              -0.3621138954292031,
+              1.027774512612561
+            ],
+            "velocity": [
+              2.7134411005583297,
+              0.4055952760372578,
+              1.9745792065636383
+            ]
+          },
+          "landing_m": [
+            1.9107470274028817,
+            -0.15769535083431296,
+            0.7759126270752997
+          ],
+          "net_position_m": [
+            1.73,
+            -0.18473155225494295,
+            0.9510336259027559
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.3765146236715746,
+            0.18290351315773315
+          ],
+          "target_world_m": [
+            0.43,
+            -0.3765146236715746,
+            0.9648914782646972
+          ],
+          "deadline_s": 0.9877258611057533,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.202892679011938,
+          "face_normal_at_deadline": [
+            0.9852005160905712,
+            0.08257374362703845,
+            0.15020492654466255
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9800000000000008,
+          "hit_time_error_ms": -7.725861105752574,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.344627235303614,
+          "peak_leg_change_rad": 0.2053225978458878,
+          "minimum_ball_face_distance_cm": 5.068781346075173,
+          "completed": true,
+          "actual_launch_time_s": 0.32800000000000024,
+          "planned_launch_time_s": 0.32733339668976114
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5483849569787331,
+              -0.3341704711746929,
+              1.0098224086013838
+            ],
+            "velocity": [
+              2.882719829860817,
+              0.4612512773093482,
+              2.121317524439478
+            ]
+          },
+          "landing_m": [
+            2.055930440130577,
+            -0.09293605314190814,
+            0.7762162925369845
+          ],
+          "net_position_m": [
+            1.73,
+            -0.14510546310979247,
+            1.05321891249741
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.3503703516248397,
+            0.16401323636551496
+          ],
+          "target_world_m": [
+            0.43,
+            -0.3503703516248397,
+            0.946001201472479
+          ],
+          "deadline_s": 0.9231344690807625,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.6408820403403,
+          "face_normal_at_deadline": [
+            0.9896763648717622,
+            0.09397948250629112,
+            0.108206051965977
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9150000000000007,
+          "hit_time_error_ms": -8.134469080761765,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.1869858665513,
+          "peak_leg_change_rad": 0.21635007234604817,
+          "minimum_ball_face_distance_cm": 5.364143891472937,
+          "completed": true,
+          "actual_launch_time_s": 0.2660000000000002,
+          "planned_launch_time_s": 0.2652840590607509
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5401447413274165,
+              -0.3619098087237293,
+              1.013249322237707
+            ],
+            "velocity": [
+              2.713064100239097,
+              0.39368194197710327,
+              2.068160116902357
+            ]
+          },
+          "landing_m": [
+            1.9372495635802953,
+            -0.15916360860552334,
+            0.7761289761449048
+          ],
+          "net_position_m": [
+            1.73,
+            -0.18925464408364426,
+            0.9746952817603278
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.3757906367157654,
+            0.16522647625937917
+          ],
+          "target_world_m": [
+            0.43,
+            -0.3757906367157654,
+            0.9472144413663433
+          ],
+          "deadline_s": 0.9281116833617741,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.057136241214426,
+          "face_normal_at_deadline": [
+            0.9881854126450463,
+            0.07439103770475791,
+            0.1339983721720202
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9210000000000007,
+          "hit_time_error_ms": -7.111683361773369,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.201365262722051,
+          "peak_leg_change_rad": 0.20408303044253223,
+          "minimum_ball_face_distance_cm": 5.013849998730927,
+          "completed": true,
+          "actual_launch_time_s": 0.2700000000000002,
+          "planned_launch_time_s": 0.26968630892225676
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5431632939325706,
+              -0.38402409130822884,
+              1.0191593015005294
+            ],
+            "velocity": [
+              2.749630996033466,
+              0.3796231634129276,
+              2.1605484224071474
+            ]
+          },
+          "landing_m": [
+            2.0085865816004476,
+            -0.18168494520913392,
+            0.775961032823327
+          ],
+          "net_position_m": [
+            1.73,
+            -0.2201654842944667,
+            1.0357649837668137
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.3975436871271511,
+            0.16797952609619105
+          ],
+          "target_world_m": [
+            0.43,
+            -0.3975436871271511,
+            0.9499674912031552
+          ],
+          "deadline_s": 0.9308558873477527,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 3.8261965555512605,
+          "face_normal_at_deadline": [
+            0.9872982615760946,
+            0.07229859653492587,
+            0.14147457590643148
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9240000000000007,
+          "hit_time_error_ms": -6.855887347751999,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.580598830016048,
+          "peak_leg_change_rad": 0.19414348067617423,
+          "minimum_ball_face_distance_cm": 4.937380799461693,
+          "completed": true,
+          "actual_launch_time_s": 0.2730000000000002,
+          "planned_launch_time_s": 0.27241287499803524
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5515588825518561,
+              -0.33480943130761304,
+              1.01433345356879
+            ],
+            "velocity": [
+              2.935348080469057,
+              0.45757313299640756,
+              2.0946412794322935
+            ]
+          },
+          "landing_m": [
+            2.077808995417952,
+            -0.09687140214948584,
+            0.7759932086516097
+          ],
+          "net_position_m": [
+            1.73,
+            -0.15110958400488336,
+            1.0627280134712243
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.35109937842138017,
+            0.16747870065176493
+          ],
+          "target_world_m": [
+            0.43,
+            -0.35109937842138017,
+            0.9494666657587291
+          ],
+          "deadline_s": 0.9381197373382747,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.841774581345036,
+          "face_normal_at_deadline": [
+            0.9897519004591063,
+            0.08344335759230687,
+            0.11588089407364534
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9300000000000007,
+          "hit_time_error_ms": -8.11973733827398,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.227388718990692,
+          "peak_leg_change_rad": 0.21701105493876482,
+          "minimum_ball_face_distance_cm": 5.366927878712532,
+          "completed": true,
+          "actual_launch_time_s": 0.2800000000000002,
+          "planned_launch_time_s": 0.27982186592786773
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5459549436922069,
+              -0.3469704107268643,
+              1.0094249672660784
+            ],
+            "velocity": [
+              2.829912703571461,
+              0.42602124098043415,
+              2.1650499105979897
+            ]
+          },
+          "landing_m": [
+            2.0457479807040673,
+            -0.12117915300723078,
+            0.7770942286928229
+          ],
+          "net_position_m": [
+            1.73,
+            -0.1687216811358745,
+            1.0545595975923987
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.36212312404245056,
+            0.15927769582548076
+          ],
+          "target_world_m": [
+            0.43,
+            -0.36212312404245056,
+            0.9412656609324449
+          ],
+          "deadline_s": 0.9573507272820058,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.530540743019521,
+          "face_normal_at_deadline": [
+            0.9901702880462151,
+            0.07743355573808708,
+            0.1164768007640673
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9500000000000007,
+          "hit_time_error_ms": -7.350727282005032,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.099786589519595,
+          "peak_leg_change_rad": 0.2113190208222144,
+          "minimum_ball_face_distance_cm": 5.154376322057116,
+          "completed": true,
+          "actual_launch_time_s": 0.3000000000000002,
+          "planned_launch_time_s": 0.29981404507232545
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5477063495496902,
+              -0.34182583517629095,
+              1.0104575246087257
+            ],
+            "velocity": [
+              2.871465939084945,
+              0.4574766708399122,
+              2.1357817538551975
+            ]
+          },
+          "landing_m": [
+            2.0579510547391386,
+            -0.10119574914369305,
+            0.77569313312081
+          ],
+          "net_position_m": [
+            1.73,
+            -0.15346498582714846,
+            1.0562824504556467
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.35787147801895713,
+            0.164195821895358
+          ],
+          "target_world_m": [
+            0.43,
+            -0.35787147801895713,
+            0.9461837870023221
+          ],
+          "deadline_s": 0.9170673826154758,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.616090730986465,
+          "face_normal_at_deadline": [
+            0.9897699851823226,
+            0.08213222098101935,
+            0.11666051049480226
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9090000000000007,
+          "hit_time_error_ms": -8.067382615475127,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.178763463411735,
+          "peak_leg_change_rad": 0.21418758800016954,
+          "minimum_ball_face_distance_cm": 5.190628990968542,
+          "completed": true,
+          "actual_launch_time_s": 0.2600000000000002,
+          "planned_launch_time_s": 0.25921577544097496
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5545233314353061,
+              -0.3803099319663816,
+              1.0268301116145593
+            ],
+            "velocity": [
+              2.9502225176030086,
+              0.4304323849922304,
+              1.9196815391135895
+            ]
+          },
+          "landing_m": [
+            2.0118404834896872,
+            -0.16767633378021457,
+            0.776660858351765
+          ],
+          "net_position_m": [
+            1.73,
+            -0.20880991021069464,
+            1.0110687251461585
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.39567832691749044,
+            0.1837467148072689
+          ],
+          "target_world_m": [
+            0.43,
+            -0.39567832691749044,
+            0.965734679914233
+          ],
+          "deadline_s": 0.9015066056787832,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.083217080993613,
+          "face_normal_at_deadline": [
+            0.9845537251487366,
+            0.09202734037226118,
+            0.14894606715102207
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.8930000000000007,
+          "hit_time_error_ms": -8.506605678782474,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.75575708654154,
+          "peak_leg_change_rad": 0.1987431595925912,
+          "minimum_ball_face_distance_cm": 4.89481046159537,
+          "completed": true,
+          "actual_launch_time_s": 0.2410000000000002,
+          "planned_launch_time_s": 0.2403906847544578
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5390602309148795,
+              -0.3870010612176706,
+              1.0069778938392635
+            ],
+            "velocity": [
+              2.726655434875803,
+              0.37248855759293387,
+              1.962291799988422
+            ]
+          },
+          "landing_m": [
+            1.9987430052313666,
+            -0.18560922771230812,
+            0.777952985480023
+          ],
+          "net_position_m": [
+            1.73,
+            -0.22428828729712583,
+            0.9267825427106657
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.4001600264530082,
+            0.16033801766984132
+          ],
+          "target_world_m": [
+            0.43,
+            -0.4001600264530082,
+            0.9423259827768055
+          ],
+          "deadline_s": 0.9272618250718968,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 3.7065196643304126,
+          "face_normal_at_deadline": [
+            0.9886976249060088,
+            0.07095357612157066,
+            0.13207042265692476
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9210000000000007,
+          "hit_time_error_ms": -6.261825071896099,
+          "net_crossed": false,
+          "opponent_landing": false,
+          "legal_return": false,
+          "own_bounces": 1,
+          "failure": "net_contact",
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.516990709331981,
+          "peak_leg_change_rad": 0.19161080872353445,
+          "minimum_ball_face_distance_cm": 4.909390129633742,
+          "completed": true,
+          "actual_launch_time_s": 0.2690000000000002,
+          "planned_launch_time_s": 0.26872491427338696
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.54750952234072,
+              -0.39353267078372456,
+              1.0336405305435736
+            ],
+            "velocity": [
+              2.7236349194858342,
+              0.41303058987929286,
+              1.8814375505461447
+            ]
+          },
+          "landing_m": [
+            2.0032938497226254,
+            -0.1677963770088628,
+            0.7780065094061704
+          ],
+          "net_position_m": [
+            1.73,
+            -0.2141057037210236,
+            0.925445606473678
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.40807729691860556,
+            0.1948203857461136
+          ],
+          "target_world_m": [
+            0.43,
+            -0.40807729691860556,
+            0.9768083508530777
+          ],
+          "deadline_s": 0.9700708156889043,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 3.873895249097693,
+          "face_normal_at_deadline": [
+            0.9842224870120216,
+            0.08280703878502932,
+            0.15636204906411172
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9600000000000007,
+          "hit_time_error_ms": -10.070815688903556,
+          "net_crossed": false,
+          "opponent_landing": false,
+          "legal_return": false,
+          "own_bounces": 1,
+          "failure": "net_contact",
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 8.080905529361669,
+          "peak_leg_change_rad": 0.19894490776371798,
+          "minimum_ball_face_distance_cm": 4.902351016492002,
+          "completed": true,
+          "actual_launch_time_s": 0.3090000000000002,
+          "planned_launch_time_s": 0.30831103946139793
+        },
+        {
+          "outgoing": {
+            "position": [
+              0.5471407769618456,
+              -0.35405376277742184,
+              1.0350970643523791
+            ],
+            "velocity": [
+              2.766403620354727,
+              0.44817327579374616,
+              1.9569214164347573
+            ]
+          },
+          "landing_m": [
+            1.9385589514691266,
+            -0.12862260505316161,
+            0.7767806421305931
+          ],
+          "net_position_m": [
+            1.73,
+            -0.16242377469784697,
+            0.9729838149960688
+          ],
+          "target_pelvis_m": [
+            0.43,
+            -0.3699859363487396,
+            0.19160963943778372
+          ],
+          "target_world_m": [
+            0.43,
+            -0.3699859363487396,
+            0.9735976045447479
+          ],
+          "deadline_s": 0.9986592744922862,
+          "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+          "simulation_only": true,
+          "online_encoder_calls": 0,
+          "face_error_at_deadline_cm": 4.537226770866514,
+          "face_normal_at_deadline": [
+            0.9837362883385676,
+            0.08271993408591943,
+            0.15943753482376738
+          ],
+          "face_contact": true,
+          "rim_contact": false,
+          "hit_time_s": 0.9900000000000008,
+          "hit_time_error_ms": -8.65927449228543,
+          "net_crossed": true,
+          "opponent_landing": true,
+          "legal_return": true,
+          "own_bounces": 1,
+          "failure": null,
+          "racket_obstacle_contacts": 0,
+          "peak_root_drift_cm": 7.358690876079965,
+          "peak_leg_change_rad": 0.2103852645769652,
+          "minimum_ball_face_distance_cm": 5.1215735020839706,
+          "completed": true,
+          "actual_launch_time_s": 0.33800000000000024,
+          "planned_launch_time_s": 0.3374949820906382
+        }
+      ]
+    }
+  },
+  "source_hashes": {
+    "feed.py": "c353b6d177cfc6963750a92b11bda51aa9baa51dd4f6424def0ece768313503e",
+    "evaluate.py": "4f5cef7b9870b422a2245b4c18b2d6eb3e19e8c6019e9b2f516c24e055052c72",
+    "train_model.py": "d70936d935d3a58bd95c3e89b48127f1ccb2a49525632310593a0b06df878d81",
+    "publish_report.py": "87ed341274bc0d108a7dc48000882c915650b7bbc8d7b8d57f517f20e5838818",
+    "environment.py": "faa795bdb1ff56f0644b2a5d6a01e88bada8584f3b8d9a7958673b310420564a",
+    "serve.py": "db36a176d7234758cd21ce88d218de4cff845e31a4cd0793fc67c3f0a065bda9",
+    "train_residual.py": "69aadf7c4c0c992192e6154fa307535d724027d16f4d5ad9eed9c2bfe1549f4f",
+    "export_policy.py": "468b64ea0fc466786398cf4a4d6d3234fc15cc63614dd9e712bd5217e8b64af1",
+    "test_pipeline.py": "a84b9f0820abe51b23f8d9d1e126d38258b0f745e8380abac7bd7ac5dcfee63c",
+    "mount.py": "c0b39b0bd0dff95b85c48308f8e46e35ca4af648789416a9a1faef2a42ef47f3",
+    "policy.py": "be0f19bc2147d0517a14bcaff5a678098f6d1cb8fed88bc8c65f2ab66feca4f9",
+    "render.py": "d981992aae910617ad7d7bdda44f743345525f95c77b1736a693f82e8f935749"
+  },
+  "sensitivity": [
+    {
+      "physics_dt_s": 0.0005,
+      "attachment_mass_scale": 1.0,
+      "report": {
+        "outgoing": {
+          "position": [
+            0.5435064345373669,
+            -0.3662440287335528,
+            1.02531382795364
+          ],
+          "velocity": [
+            2.8599771289654927,
+            0.4007006393572315,
+            2.107976354581872
+          ]
+        },
+        "landing_m": [
+          2.046401924965006,
+          -0.15567584275132287,
+          0.7774745457242868
+        ],
+        "net_position_m": [
+          1.73,
+          -0.20000887759928745,
+          1.054615076165308
+        ],
+        "target_pelvis_m": [
+          0.43,
+          -0.38,
+          0.178
+        ],
+        "target_world_m": [
+          0.43,
+          -0.38,
+          0.959987965106964
+        ],
+        "deadline_s": 1.0,
+        "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+        "simulation_only": true,
+        "online_encoder_calls": 0,
+        "face_error_at_deadline_cm": 4.4566267948121805,
+        "face_normal_at_deadline": [
+          0.9853213766161684,
+          0.0680076472427752,
+          0.15657823826994485
+        ],
+        "face_contact": true,
+        "rim_contact": false,
+        "hit_time_s": 0.9919999999999461,
+        "hit_time_error_ms": -8.000000000053852,
+        "net_crossed": true,
+        "opponent_landing": true,
+        "legal_return": true,
+        "own_bounces": 1,
+        "failure": null,
+        "racket_obstacle_contacts": 0,
+        "peak_root_drift_cm": 7.3445611657550565,
+        "peak_leg_change_rad": 0.2029988623650539,
+        "minimum_ball_face_distance_cm": 5.0206150313847715,
+        "completed": true,
+        "actual_launch_time_s": 0.34050000000000025,
+        "planned_launch_time_s": 0.3402664368021969
+      }
+    },
+    {
+      "physics_dt_s": 0.00025,
+      "attachment_mass_scale": 1.0,
+      "report": {
+        "outgoing": {
+          "position": [
+            0.5383081580828779,
+            -0.3667391595881251,
+            1.0224096940593579
+          ],
+          "velocity": [
+            2.7955058868899085,
+            0.3982152465671646,
+            2.0909497613196995
+          ]
+        },
+        "landing_m": [
+          1.9954623273060106,
+          -0.1591694623150059,
+          0.7790146534536759
+        ],
+        "net_position_m": [
+          1.73,
+          -0.19698460357499262,
+          1.0218890349009735
+        ],
+        "target_pelvis_m": [
+          0.43,
+          -0.38,
+          0.178
+        ],
+        "target_world_m": [
+          0.43,
+          -0.38,
+          0.959987965106964
+        ],
+        "deadline_s": 1.0,
+        "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+        "simulation_only": true,
+        "online_encoder_calls": 0,
+        "face_error_at_deadline_cm": 4.462602298595267,
+        "face_normal_at_deadline": [
+          0.9853017072674549,
+          0.06797710773427446,
+          0.15671521457701892
+        ],
+        "face_contact": true,
+        "rim_contact": false,
+        "hit_time_s": 0.9914999999999186,
+        "hit_time_error_ms": -8.500000000081442,
+        "net_crossed": true,
+        "opponent_landing": true,
+        "legal_return": true,
+        "own_bounces": 1,
+        "failure": null,
+        "racket_obstacle_contacts": 0,
+        "peak_root_drift_cm": 7.343897698321293,
+        "peak_leg_change_rad": 0.20296452356487993,
+        "minimum_ball_face_distance_cm": 4.9957398920227405,
+        "completed": true,
+        "actual_launch_time_s": 0.3404999999999902,
+        "planned_launch_time_s": 0.3402595845529015
+      }
+    },
+    {
+      "physics_dt_s": 0.001,
+      "attachment_mass_scale": 0.75,
+      "report": {
+        "outgoing": {
+          "position": [
+            0.5482160729331004,
+            -0.36390800075565816,
+            1.0238193323106886
+          ],
+          "velocity": [
+            2.828608007256837,
+            0.45135842664553194,
+            1.9847840376291543
+          ]
+        },
+        "landing_m": [
+          1.9737426014533048,
+          -0.13642335372631437,
+          0.7766489586480921
+        ],
+        "net_position_m": [
+          1.73,
+          -0.17533180617959193,
+          0.9948170660006719
+        ],
+        "target_pelvis_m": [
+          0.43,
+          -0.38,
+          0.178
+        ],
+        "target_world_m": [
+          0.43,
+          -0.38,
+          0.959987965106964
+        ],
+        "deadline_s": 1.0,
+        "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+        "simulation_only": true,
+        "online_encoder_calls": 0,
+        "face_error_at_deadline_cm": 4.271521199935218,
+        "face_normal_at_deadline": [
+          0.9831419277302103,
+          0.07930721832050841,
+          0.16474924904590438
+        ],
+        "face_contact": true,
+        "rim_contact": false,
+        "hit_time_s": 0.9920000000000008,
+        "hit_time_error_ms": -7.99999999999923,
+        "net_crossed": true,
+        "opponent_landing": true,
+        "legal_return": true,
+        "own_bounces": 1,
+        "failure": null,
+        "racket_obstacle_contacts": 0,
+        "peak_root_drift_cm": 6.9919979213856305,
+        "peak_leg_change_rad": 0.20415734077559988,
+        "minimum_ball_face_distance_cm": 5.0880224934534315,
+        "completed": true,
+        "actual_launch_time_s": 0.34000000000000025,
+        "planned_launch_time_s": 0.33963780632427953
+      }
+    },
+    {
+      "physics_dt_s": 0.001,
+      "attachment_mass_scale": 1.25,
+      "report": {
+        "outgoing": {
+          "position": [
+            0.54324942206468,
+            -0.36741621305186706,
+            1.0208105433864134
+          ],
+          "velocity": [
+            2.8252877513392347,
+            0.3580882364945903,
+            1.863082067331851
+          ]
+        },
+        "landing_m": [
+          1.9697895185592331,
+          -0.1865337886582508,
+          0.7774078549950352
+        ],
+        "net_position_m": [
+          1.73,
+          -0.2170027121932953,
+          0.9358988262428789
+        ],
+        "target_pelvis_m": [
+          0.43,
+          -0.38,
+          0.178
+        ],
+        "target_world_m": [
+          0.43,
+          -0.38,
+          0.959987965106964
+        ],
+        "deadline_s": 1.0,
+        "checkpoint_sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+        "simulation_only": true,
+        "online_encoder_calls": 0,
+        "face_error_at_deadline_cm": 4.7057492311307545,
+        "face_normal_at_deadline": [
+          0.987342658769245,
+          0.057309874032704544,
+          0.14788526807235947
+        ],
+        "face_contact": true,
+        "rim_contact": false,
+        "hit_time_s": 0.9930000000000008,
+        "hit_time_error_ms": -6.999999999999229,
+        "net_crossed": true,
+        "opponent_landing": true,
+        "legal_return": false,
+        "own_bounces": 1,
+        "failure": "net_contact",
+        "racket_obstacle_contacts": 0,
+        "peak_root_drift_cm": 7.6834461306482496,
+        "peak_leg_change_rad": 0.20180545634928454,
+        "minimum_ball_face_distance_cm": 5.1388269166759635,
+        "completed": true,
+        "actual_launch_time_s": 0.34000000000000025,
+        "planned_launch_time_s": 0.33963780632427953
+      }
+    }
+  ]
+}

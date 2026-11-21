@@ -1,0 +1,52 @@
+{
+  "input": [
+    "target_x_pelvis_at_start_m",
+    "target_y_pelvis_at_start_m",
+    "target_z_pelvis_at_start_m",
+    "time_before_hit_s"
+  ],
+  "output": "64D SONIC token",
+  "artifact": "policy.ts",
+  "sha256": "c4e829b72413e962a029c85cc15236213c899f0e38c97e5446e8731ad4437af2",
+  "max_python_export_difference": 0.0,
+  "checks": 200,
+  "online_encoder_required": false,
+  "architecture": "4-128-128-128-64 tanh prior + learned low-rank token head + bounded phase lead",
+  "training": "Supervised motion-token prior; CEM reinforcement learning of 13 token-head parameters on direct-bracket dynamics",
+  "simulation_only": true,
+  "hardware_approved": false,
+  "mount": {
+    "mount": "direct wrist bracket",
+    "dex3_removed": true,
+    "wrist_to_blade_center_m": [
+      0.2365,
+      0,
+      0
+    ],
+    "contact_offset_m": [
+      0.2365,
+      0.0062,
+      0
+    ],
+    "face_normal_wrist": [
+      0,
+      1,
+      0
+    ],
+    "blade_mass_kg": 0.14,
+    "handle_mass_kg": 0.025,
+    "bracket_mass_kg": 0.035,
+    "attachment_dynamics_measured": false,
+    "hardware_approved": false,
+    "geometry_source": "https://github.com/dvij542/table-tennis-motion-kit",
+    "source_commit": "c6c4c061f8fcb24714fbe118a31e66c69adeb4bf",
+    "bare_wrist_inertia_source": "/home/jingxuan/Documents/Codex/2026-09-15/nih/work/GR00T-WholeBodyControl/decoupled_wbc/control/robot_model/model_data/g1/g1_29dof.urdf",
+    "bare_wrist_inertia_sha256": "56d0c7b4e44351ee8e89e7b1f1fcc8b02d5ec5cd191e43239d2b06f039e75860",
+    "left_terminal": "bare wrist; no ball holder in this experiment",
+    "collision_geometry": "blade cylinder, handle capsule, bracket box; approximations",
+    "physics": "MuJoCo contact; no drag or spin model; contact parameters provisional"
+  },
+  "base_sha256": "c9a8c8c744c3ff6f70c900fb6e4b743f930c305423b52bf08b854606f44eb172",
+  "config_sha256": "d10644e7617cb8042d172dedda32e2923bda3b2c8daa60daee95657a02a2992e",
+  "basis_sha256": "dcb65c46e051113b1e0d074d20bc91b90ff48b94f26f0917683a6a846f63ac1f"
+}

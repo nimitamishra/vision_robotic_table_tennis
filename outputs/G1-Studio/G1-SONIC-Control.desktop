@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=G1 SONIC Control
+Comment=Open SONIC controls with a software STOP button and Esc shortcut
+Exec=/home/jingxuan/Documents/Codex/2026-10-16/ni/outputs/G1-Studio/start_sonic_control.sh
+Path=/home/jingxuan/Documents/Codex/2026-10-16/ni/outputs/G1-Studio
+Icon=applications-engineering
+Terminal=false
+Categories=Science;Robotics;
+StartupNotify=true
